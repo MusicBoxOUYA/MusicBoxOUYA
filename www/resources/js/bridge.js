@@ -24,10 +24,7 @@ function buildSongInfo(parentEle, res){
 	insertElementAt(album, p);
 }
 
-function buildTable(parentEle, res){
-	
-	var data = JSON.parse(res);
-	var table = createElement("table");
-	
-	insertElementAt(table, parentEle);
+function buildSongTable(parentEle, res){
+	var table = new Table(["title", "album", "artist"], ["Song", "Album", "Artist"]);
+	var html = table.buildTable(res);
 }
