@@ -3,12 +3,19 @@ package org.team4977.musicboxouya.media;
 import java.util.ArrayList;
 
 public class Album {
+	String name;
 	Artist artist;
 	ArrayList<Song> songs = new ArrayList<Song>();
 	
-	public Album(Artist artist)
+	public Album(String name, Artist artist)
 	{
+		this.name = name;
 		this.artist = artist;
+	}
+	
+	public String getName()
+	{
+		return name;
 	}
 	
 	public void addSong(Song s)
@@ -18,6 +25,23 @@ public class Album {
 	
 	public Song[] getSongs()
 	{
-		return (Song[])songs.toArray();
+		return songs.toArray(new Song[songs.size()]);
+	}
+	
+	public String toJSON()
+	{
+		String output = "{";
+		output += "\"title\": \""+getName()+"\",";
+		output += "\"songs\":[";
+		Song[] songs = getSongs();
+		for ( int i = 0; i < songs.length; i++ )
+		{
+			output += songs[i].toJSON();
+			if ( i != songs.length-1 )
+				output += ",";
+		}
+		
+		output += "]}";
+		return output;
 	}
 }
