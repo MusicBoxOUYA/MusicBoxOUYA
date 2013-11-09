@@ -10,9 +10,12 @@
   <link rel="stylesheet" href="resources/css/foundation.css" />
   <link rel="stylesheet" href="resources/css/main.css" />
   <link rel="stylesheet" href="resources/css/library.css" />
+  <script src="resources/js/object.js" type="text/javascript" charset="utf-8"></script>
+  <script src="resources/js/table.js" type="text/javascript" charset="utf-8"></script>
   <script src="resources/js/jquery-2.0.3.min.js"></script>
   <script src="resources/js/vendor/custom.modernizr.js"></script>
   <script src="resources/js/foundation.min.js"></script>
+  <script src="resources/js/bridge.js"></script>
 </head>
 <body>
   <div class="sticky">
@@ -40,6 +43,9 @@
           <dd class="active"><a href="#">Artist</a><dd>
           <dd><a href="#">Album</a><dd>
         </dl>
+        <ul class="album-list small-block-grid-4">
+          
+        </ul>
         <ul class="small-block-grid-4">
           <li>
             <img src="resources/cover-art.jpg">
@@ -63,7 +69,15 @@
               <li>Artist</li>
             </ul>
           </li>
+          <li><img src="resources/cover-art.jpg">
+            <ul class="no-bullet ul-margin-bottom">
+              <li>Artist</li>
+            </ul>
+          </li>
         </ul>
+        <div class="list">
+          
+        </div>
         <table width="100%">
           <thead>
             <tr>
@@ -71,7 +85,7 @@
               <th>Album</th>
               <th>Artist</th>
               <th width="15px">+1</th>
-              <th width="110px"></th>
+              <th width="110px"></th>`
             </tr>
           </thead>
           <tbody>

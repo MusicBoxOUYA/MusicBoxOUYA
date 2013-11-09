@@ -4,7 +4,7 @@
 * - object.js
 *
 * VERSION:
-* - 1.0.1
+* - 1.0.2
 *
 * USE: 
 * - simple HTML/XML library allowing easy creation of objects
@@ -65,4 +65,11 @@ function updateElementContent(ele,content){
 	ele.innerHTML='';
 	var node = document.createTextNode(content);
 	ele.appendChild(node);
+}
+
+function cloneArray(a){
+	out = new Array();
+	for ( var i = 0; i < a.length; i++ )
+	out.push(a[i]);
+	return out;
 }
