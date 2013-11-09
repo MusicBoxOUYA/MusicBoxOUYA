@@ -10,6 +10,7 @@
   <link rel="stylesheet" href="resources/css/foundation.css" />
   <link rel="stylesheet" href="resources/css/app.css" />
   <link rel="stylesheet" href="resources/css/main.css" />
+  <link rel="stylesheet" href="resources/css/index.css" />
   <script src="resources/js/vendor/custom.modernizr.js"></script>
 </head>
 <body>
@@ -19,20 +20,61 @@
     </ul>
   </nav>
   <div class="container">
-    <h1>Now Playing</h1>
-    <div class="row">
-      <div class="small-4 small-offset-1 columns">
-        <img src="resources/cover-art.jpg">
+    <section class="playing">
+      <h1>Now Playing</h1>
+      <div class="row">
+        <div class="small-4 small-offset-1 columns">
+          <img src="resources/cover-art.jpg">
+        </div>
+        <div class="small-5 small-offset-1 columns">
+          <div class="panel">
+            <h3 class="song-title">Song Name</h3>
+            <p>
+              <span class="song-artist">Song Artist</span><br>
+              <span class="song-artist">Song Album</span>
+            </p>
+          </div>
+        </div>
+        <div class="large-1 columns"></div>
       </div>
-      <div class="small-6 columns">
-        <div class="panel">
-          <div class="song-title">Song Name</div>
-          <div class="song-artist">Song Artist</div>
-          <div class="song-album">Song Album</div>
+    </div>
+    <section class="queue">
+      <div class="row">
+        <div class"small-12 columns">
+          <table>
+            <thead>
+              <tr>
+                <th width="200">Table Header</th>
+                <th>Table Header</th>
+                <th width="150">Table Header</th>
+                <th width="150">Table Header</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Content Goes Here</td>
+                <td>This is longer content Donec id elit non mi porta gravida at eget metus.</td>
+                <td>Content Goes Here</td>
+                <td>Content Goes Here</td>
+              </tr>
+              <tr>
+                <td>Content Goes Here</td>
+                <td>This is longer Content Goes Here Donec id elit non mi porta gravida at eget metus.</td>
+                <td>Content Goes Here</td>
+                <td>Content Goes Here</td>
+              </tr>
+              <tr>
+                <td>Content Goes Here</td>
+                <td>This is longer Content Goes Here Donec id elit non mi porta gravida at eget metus.</td>
+                <td>Content Goes Here</td>
+                <td>Content Goes Here</td>
+              </tr>
+            </tbody>
+          </table>
         </div>
       </div>
-      <div class="large-1 columns">
-    </div>
+    </section>
+    
   </div>
   
   <script>
