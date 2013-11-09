@@ -8,8 +8,8 @@
   <title>MusicBox | Library</title>
   <link rel="stylesheet" href="resources/css/normalize.css" />
   <link rel="stylesheet" href="resources/css/foundation.css" />
-  <link rel="stylesheet" href="resources/css/app.css" />
   <link rel="stylesheet" href="resources/css/main.css" />
+  <link rel="stylesheet" href="resources/css/library.css" />
   <script src="resources/js/jquery-2.0.3.min.js"></script>
   <script src="resources/js/vendor/custom.modernizr.js"></script>
   <script src="resources/js/foundation.min.js"></script>
@@ -36,49 +36,43 @@
       <div class="small-12">
         <h1>Library</h1>
         <dl class="sub-nav">
-          <dt><a href="#">Filter:</a></dt>
+          <dt><a href="#">List:</a></dt>
           <dd class="active"><a href="#">All</a><dd>
           <dd><a href="#">Artist</a></dd>
           <dd><a href="#">Song</a><dd>
           <dd><a href="#">Genre</a><dd>
         </dl>
-        <table width="100%">
-          <thead>
-            <tr>
-              <th>Album</th>
-              <th>Song</th>
-              <th>Time</th>
-              <th>Artist</th>
-              <th>Genre</th>
-              <th>+1</th>
-              <th></th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>More Monsters and Nice Sprites</td>
-              <td>First of the Year (Equinox)</td>
-              <td>4:22</td>
-              <td>Skrillex</td>
-              <td>Dubstep</td>
-              <td>10</td>
-              <td><button class="button tiny" style="margin:auto;">Add To Queue</button></td>
-            </tr>
-            <tr>
-              <td>More Monsters and Nice Sprites</td>
-              <td>First of the Year (Equinox)</td>
-              <td>4:22</td>
-              <td>Skrillex</td>
-              <td>Dubstep</td>
-              <td>10</td>
-              <td><button class="button tiny" style="margin:auto;">Add To Queue</button></td>
-            </tr>
-          </tbody>
-        </table>
+        <ul class="small-block-grid-4">
+          <li>
+            <img src="resources/cover-art.jpg">
+            <ul class="no-bullet ul-margin-bottom">
+              <li>Artist</li>
+              <li>Album</li>
+            </ul>
+          </li>
+          <li><img src="resources/cover-art.jpg">
+            <ul class="no-bullet ul-margin-bottom">
+              <li>Artist</li>
+              <li>Album</li>
+            </ul>
+          </li>
+
+          <li><img src="resources/cover-art.jpg">
+            <ul class="no-bullet ul-margin-bottom">
+              <li>Artist</li>
+              <li>Album</li>
+            </ul>
+          </li>
+          <li><img src="resources/cover-art.jpg">
+            <ul class="no-bullet ul-margin-bottom">
+              <li>Artist</li>
+              <li>Album</li>
+            </ul>
+          </li>
+        </ul>
       </div>
     </div>
   </div>
-
   <script>
     $(document).foundation();
   </script>
