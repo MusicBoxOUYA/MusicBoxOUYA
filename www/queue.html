@@ -5,10 +5,9 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width" />
-  <title>MusicBox | Library</title>
+  <title>MusicBox | Queue</title>
   <link rel="stylesheet" href="resources/css/normalize.css" />
   <link rel="stylesheet" href="resources/css/foundation.css" />
-  <link rel="stylesheet" href="resources/css/app.css" />
   <link rel="stylesheet" href="resources/css/main.css" />
   <script src="resources/js/jquery-2.0.3.min.js"></script>
   <script src="resources/js/vendor/custom.modernizr.js"></script>
@@ -22,11 +21,11 @@
       </ul>
       <section class="top-bar-section">
         <ul class="left">
-          <li class="active"><a href="index.html">Now Playing</a></li>
+          <li class=""><a href="index.html">Now Playing</a></li>
           <li class="divider"></li>
-          <li class=""><a href="#">Library</a></li>
+          <li class=""><a href="library.html">Library</a></li>
           <li class="divider"></li>
-          <li class=""><a href="queue.html">Queue</a></li>
+          <li class="active"><a href="#">Queue</a></li>
         </ul>
       </section>
     </nav>
@@ -34,10 +33,11 @@
   <div class="container">
     <div class="row">
       <div class="small-12">
-        <h1>Library</h1>
+        <h1>Queue</h1>
         <dl class="sub-nav">
           <dt><a href="#">Filter:</a></dt>
-          <dd class="active"><a href="#">All</a><dd>
+          <dd class="active"><a href="#">First-Last</a><dd>
+          <dd><a href="#">Last-First</a><dd>
           <dd><a href="#">Artist</a></dd>
           <dd><a href="#">Song</a><dd>
           <dd><a href="#">Genre</a><dd>
@@ -45,40 +45,41 @@
         <table width="100%">
           <thead>
             <tr>
+              <th>#</th>
               <th>Album</th>
-              <th>Song</th>
               <th>Time</th>
               <th>Artist</th>
               <th>Genre</th>
               <th>+1</th>
-              <th></th>
             </tr>
           </thead>
           <tbody>
             <tr>
+              <td>1</td>
               <td>More Monsters and Nice Sprites</td>
-              <td>First of the Year (Equinox)</td>
               <td>4:22</td>
               <td>Skrillex</td>
               <td>Dubstep</td>
               <td>10</td>
-              <td><button class="button tiny" style="margin:auto;">Add To Queue</button></td>
             </tr>
             <tr>
+              <td>2</td>
               <td>More Monsters and Nice Sprites</td>
-              <td>First of the Year (Equinox)</td>
               <td>4:22</td>
               <td>Skrillex</td>
               <td>Dubstep</td>
               <td>10</td>
-              <td><button class="button tiny" style="margin:auto;">Add To Queue</button></td>
             </tr>
           </tbody>
         </table>
       </div>
     </div>
   </div>
-
+  <script>
+    document.write('<script src=' +
+    ('__proto__' in {} ? 'resources/js/vendor/zepto' : 'js/vendor/jquery') +
+    '.js><\/script>')
+  </script>
   <script>
     $(document).foundation();
   </script>
