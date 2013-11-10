@@ -27,6 +27,12 @@ function queueSong(id){
   });
 }
 
+function buildAlbumArt(parentEle, res){
+  var data = JSON.parse(res);
+  var img = createElement("img", {"src":"api/art?song="+data.song.id});
+  insertElementAt(img, parentEle[0]);
+}
+
 function buildSongInfo(parentEle, res){
 	var data = JSON.parse(res);
 	var name = createElement("h3", {"class":"song-title"}, data.song.title);
