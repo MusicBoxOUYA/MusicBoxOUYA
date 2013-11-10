@@ -4,8 +4,8 @@ function call(){
     buildSongInfo($("#song-info"), result);
     buildSongTime($(".song-progress"), result);
   });
-  request("api/queue?limit=3", "", function(result){
-    buildQueueTable($("#queue"), JSON.parse(result));
+  request("api/queue?limit=1", "", function(result){
+    buildUpNext($("#up-next"), JSON.parse(result));
   });
 }
 $( document ).ready(function(){

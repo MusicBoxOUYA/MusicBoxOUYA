@@ -67,6 +67,20 @@ function buildSongTime(parentEle, res){
 	insertElementAt(durationTime,parentEle[2]);
 }
 
+function buildUpNext(parentEle, res){
+  var data = JSON.parse(res);
+  var p = createElement("p");
+  var title = createElement("span", null, data[0].title+" ");
+  var artist = createElement("span", null, data[0].artist);
+  var album = createElement("span", null, data[0].album); 
+  var dash = createText(" - ");
+  insertElementAt(title, p);
+  insertElementAt(artist, p);
+  insertElementAt(dash, p);
+  insertElementAt(album, p);
+  insertElementAt(p, parentEle[0]);
+}
+
 function setButtonSongId(parentEle, res){
   var data = JSON.parse(res);
   parentEle.data("song-id", data.song.id);
