@@ -8,6 +8,7 @@ function call(){
   });
 }
 $( document ).ready(function(){
+	
   setInterval(call, 1000);
 });
 call();
