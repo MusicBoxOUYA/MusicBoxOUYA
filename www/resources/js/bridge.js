@@ -24,6 +24,18 @@ function buildSongInfo(parentEle, res){
 	insertElementAt(album, p);
 }
 
+function buildQueueTable(parentEle, res){
+	var table = new Table(["order", "title", "album", "artist", "score"], ["#", "Song", "Album", "Artist", "+1"]);
+  parentEle.html("");
+  var counter = 1;
+	table.addAdvancedColumnProcessor("order", function(data){
+		return counter++;
+	});
+	table.setProperties("table", {width:"100%"});
+	var html = table.buildTable(res);
+	insertElementAt(html, parentEle[0]);
+}
+
 function buildSongTable(parentEle, res){
 	var table = new Table(["title", "album", "artist", "score", "add"], ["Song", "Album", "Artist", "+1", ""]);
   parentEle.html("");
