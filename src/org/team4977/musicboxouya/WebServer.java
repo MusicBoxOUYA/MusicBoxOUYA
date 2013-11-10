@@ -41,62 +41,7 @@ public class WebServer extends NanoHTTPD {
     	{
     		return new Response(Response.Status.OK, "text/html", WebServer.class.getResourceAsStream("/org/team4977/musicboxouya/www/tvView.html"));
     	}
-    	// JS
-    	else if ( uri.equals("/resources/js/bridge.js") )
-    	{
-    		return new Response(Response.Status.OK, "text/javascript", WebServer.class.getResourceAsStream("/org/team4977/musicboxouya/www/resources/js/bridge.js"));
-    	}
-    	else if ( uri.equals("/resources/js/index.js") )
-    	{
-    		return new Response(Response.Status.OK, "text/javascript", WebServer.class.getResourceAsStream("/org/team4977/musicboxouya/www/resources/js/index.js"));
-    	}
-    	else if ( uri.equals("/resources/js/library.js") )
-    	{
-    		return new Response(Response.Status.OK, "text/javascript", WebServer.class.getResourceAsStream("/org/team4977/musicboxouya/www/resources/js/library.js"));
-    	}
-    	else if ( uri.equals("/resources/js/queue.js") )
-    	{
-    		return new Response(Response.Status.OK, "text/javascript", WebServer.class.getResourceAsStream("/org/team4977/musicboxouya/www/resources/js/queue.js"));
-    	}
-    	else if ( uri.equals("/resources/js/tv-view.js") )
-    	{
-    		return new Response(Response.Status.OK, "text/javascript", WebServer.class.getResourceAsStream("/org/team4977/musicboxouya/www/resources/js/tv-view.js"));
-    	}
-    	else if ( uri.equals("/resources/js/object.js") )
-    	{
-    		return new Response(Response.Status.OK, "text/javascript", WebServer.class.getResourceAsStream("/org/team4977/musicboxouya/www/resources/js/object.js"));
-    	}
-    	else if ( uri.equals("/resources/js/table.js") )
-    	{
-    		return new Response(Response.Status.OK, "text/javascript", WebServer.class.getResourceAsStream("/org/team4977/musicboxouya/www/resources/js/table.js"));
-    	}
-    	// CSS
-    	else if ( uri.equals("/resources/css/main.css") )
-    	{
-    		return new Response(Response.Status.OK, "text/css", WebServer.class.getResourceAsStream("/org/team4977/musicboxouya/www/resources/css/main.css"));
-    	}
-    	else if ( uri.equals("/resources/css/index.css") )
-    	{
-    		return new Response(Response.Status.OK, "text/css", WebServer.class.getResourceAsStream("/org/team4977/musicboxouya/www/resources/css/index.css"));
-    	}
-    	else if ( uri.equals("/resources/css/library.css") )
-    	{
-    		return new Response(Response.Status.OK, "text/css", WebServer.class.getResourceAsStream("/org/team4977/musicboxouya/www/resources/css/library.css"));
-    	}
-    	else if ( uri.equals("/resources/css/tv-view.css") )
-    	{
-    		return new Response(Response.Status.OK, "text/css", WebServer.class.getResourceAsStream("/org/team4977/musicboxouya/www/resources/css/tv-view.css"));
-    	}
     	
-    	// Images
-    	else if ( uri.equals("/resources/a.png") )
-    	{
-    		return new Response(Response.Status.OK, "image/png", WebServer.class.getResourceAsStream("/org/team4977/musicboxouya/www/resources/a.png"));
-    	}
-    	else if ( uri.equals("/resources/o.png") )
-    	{
-    		return new Response(Response.Status.OK, "image/png", WebServer.class.getResourceAsStream("/org/team4977/musicboxouya/www/resources/o.png"));
-    	}
     	
     	// API
     	else if ( uri.equals("/api/library") )
