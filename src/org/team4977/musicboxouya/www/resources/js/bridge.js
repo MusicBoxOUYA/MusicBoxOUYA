@@ -74,6 +74,7 @@ function buildUpNext(parentEle, res){
   var artist = createElement("span", null, data[0].title);
   var album = createElement("span", null, data[0].artist); 
   var dash = createText(" - ");
+  parentEle.html("");
   insertElementAt(title, p);
   insertElementAt(artist, p);
   insertElementAt(dash, p);
