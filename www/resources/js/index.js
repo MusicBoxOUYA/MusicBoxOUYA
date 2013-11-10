@@ -3,8 +3,8 @@ function call(){
     buildSongInfo($("#song-info"), result);
     buildSongTime($(".song-progress"), result);
   });
-  request("api/song-list.html", "", function(result){
-    buildSongTable($("#queue"), JSON.parse(result));
+  request("api/queue.html", "", function(result){
+    buildQueueTable($("#queue"), JSON.parse(result));
   });
 }
 $( document ).ready(function(){
