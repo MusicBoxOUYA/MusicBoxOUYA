@@ -37,7 +37,7 @@ public class Album {
 		Song[] songs = getSongs();
 		for ( int i = 0; i < songs.length; i++ )
 		{
-			output += songs[i].toJSON();
+			output += songs[i].toJSON(true);
 			if ( i != songs.length-1 )
 				output += ",";
 		}
