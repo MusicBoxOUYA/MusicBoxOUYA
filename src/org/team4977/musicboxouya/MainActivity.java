@@ -113,7 +113,6 @@ public class MainActivity extends Activity implements LibraryRefreshFinishedList
 		
 		reqHandler.registerPage("/api/dislike", new RequestHandler()
 		{
-
 			@Override
 			public HTTPResponse handleHTTPRequest(HTTPRequest req) {
 				if ( player == null )
@@ -138,6 +137,16 @@ public class MainActivity extends Activity implements LibraryRefreshFinishedList
 				}
 			}
 		});
+		
+		reqHandler.registerPage("/api/next", new RequestHandler()
+		{
+			@Override
+			public HTTPResponse handleHTTPRequest(HTTPRequest req) {
+				player.next();
+				return new HTTPResponse(200, "{\"success\": true}");
+			}
+		});
+		
 		
 		try {
 			new Aztec(8080, reqHandler);

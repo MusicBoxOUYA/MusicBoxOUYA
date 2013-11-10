@@ -72,6 +72,14 @@ public class MusicPlayer implements OnCompletionListener {
 		}
 	}
 	
+	public void next()
+	{
+		if ( nowPlaying != null )
+		{
+			onCompletion(player);
+		}
+	}
+	
 	public String nowPlayingJSON()
 	{
 		String output = "{";
