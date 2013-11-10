@@ -70,9 +70,9 @@ function buildSongTime(parentEle, res){
 function buildUpNext(parentEle, res){
   var data = JSON.parse(res);
   var p = createElement("p");
-  var title = createElement("b", null, data[0].title+" ");
-  var artist = createElement("span", null, data[0].artist);
-  var album = createElement("span", null, data[0].album); 
+  var title = createElement("b", null, "Up Next: ");
+  var artist = createElement("span", null, data[0].title);
+  var album = createElement("span", null, data[0].artist); 
   var dash = createText(" - ");
   insertElementAt(title, p);
   insertElementAt(artist, p);
