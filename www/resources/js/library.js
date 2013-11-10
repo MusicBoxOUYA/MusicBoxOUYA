@@ -5,7 +5,6 @@ function call(){
   });
 }
 $( document ).ready(function(){
-  call();
   $("#view-album").click(function(){
     $("dd").removeClass("active");
     $(this).parent().addClass("active");
@@ -23,3 +22,4 @@ $( document ).ready(function(){
     });
   });
 });
+call();
