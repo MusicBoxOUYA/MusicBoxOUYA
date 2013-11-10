@@ -8,7 +8,13 @@ function call(){
   });
 }
 $( document ).ready(function(){
-	
+	$("#likeButton").click(function(){
+    
+  });
+  $("#dislikeButton").click(function(){
+
+  });
+
   setInterval(call, 1000);
 });
 call();
