@@ -25,7 +25,7 @@ function buildSongInfo(parentEle, res){
 }
 
 function buildSongTable(parentEle, res){
-	var table = new Table(["title", "album", "artist", "likes", "add"], ["Song", "Album", "Artist", "+1", ""]);
+	var table = new Table(["title", "album", "artist", "score", "add"], ["Song", "Album", "Artist", "+1", ""]);
   parentEle.html("");
 	table.setProperties("table", {width:"100%"});
 	table.addColumnProcessor("add", function(data){
@@ -57,7 +57,6 @@ function buildAlbumList(parentEle, res){
     $(a).data("title", data[album].title);
     $(a).click(function(){
       $this = $(this);
-      console.log($this.data("songs"));
       $("#album-list-title").html($this.data("title"));
       buildSongTable($("#album-song-table"), $(this).data("songs"));
     });
