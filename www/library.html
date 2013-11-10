@@ -16,6 +16,7 @@
   <script src="resources/js/vendor/custom.modernizr.js"></script>
   <script src="resources/js/foundation.min.js"></script>
   <script src="resources/js/bridge.js"></script>
+  <script src="resources/js/library.js" type="text/javascript" charset="utf-8"></script>
 </head>
 <body>
   <div class="sticky">
@@ -43,80 +44,22 @@
           <dd class="active"><a href="#">Artist</a><dd>
           <dd><a href="#">Album</a><dd>
         </dl>
-        <ul class="album-list small-block-grid-4">
+        <ul id="album-list" class="small-block-grid-4">
           
-        </ul>
-        <ul class="small-block-grid-4">
-          <li>
-            <a href="#" data-reveal-id="infoModal">
-              <img src="resources/cover-art.jpg">
-            </a>
-            <ul class="no-bullet ul-margin-bottom">
-              <li>Artist</li>
-            </ul>
-          </li>
-          <li><img src="resources/cover-art.jpg">
-            <ul class="no-bullet ul-margin-bottom">
-              <li>Artist</li>
-            </ul>
-          </li>
-          <li><img src="resources/cover-art.jpg">
-            <ul class="no-bullet ul-margin-bottom">
-              <li>Artist</li>
-            </ul>
-          </li>
-          <li><img src="resources/cover-art.jpg">
-            <ul class="no-bullet ul-margin-bottom">
-              <li>Artist</li>
-            </ul>
-          </li>
-          <li><img src="resources/cover-art.jpg">
-            <ul class="no-bullet ul-margin-bottom">
-              <li>Artist</li>
-            </ul>
-          </li>
         </ul>
       </div>
     </div>
   </div>
-  <div id="infoModal" class="reveal-modal large">
-    <h2>Daft Punk</h2>
-    <table width="100%">
-        <thead>
-          <tr>
-            <th>Song</th>
-            <th>Album</th>
-            <th>Artist</th>
-            <th width="15px">+1</th>
-            <th width="110px"></th>`
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>Derezzed</td>
-            <td>TRON:Legacy</td>
-            <td>Daft Punk</td>
-            <td>10</td>
-            <td><button class="button tiny">Add To Queue</button></td>
-          </tr>
-          <tr>
-            <td>Derezzed</td>
-            <td>TRON:Legacy</td>
-            <td>Daft Punk</td>
-            <td>10</td>
-            <td><button class="button tiny">Add To Queue</button></td>
-          </tr>
-        </tbody>
-    </table>
+  <div id="album-song-list" class="reveal-modal large">
+    <h2 id="album-list-title"></h2>
+    <div id="album-song-table">
+    </div>
     <a class="close-reveal-modal">&#215;</a>
   </div>
 <script>
   document.write('<script src=' +
   ('__proto__' in {} ? 'js/vendor/zepto' : 'js/vendor/jquery') +
   '.js><\/script>')
-</script>
-<script>
-    $(document).foundation();
 </script>
 </body>
 </html>
