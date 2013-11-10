@@ -12,11 +12,14 @@ import fi.iki.elonen.NanoHTTPD;
 public class WebServer extends NanoHTTPD {
 	LibraryProvider library;
 	MusicPlayer player;
-	public WebServer(LibraryProvider library, MusicPlayer player)
+	String ipAddress;
+	
+	public WebServer(LibraryProvider library, MusicPlayer player, String ipAddress)
 	{
 		super(8080);
 		this.library = library;
 		this.player = player;
+		this.ipAddress = ipAddress;
 	}
 	
     @Override
@@ -224,6 +227,10 @@ public class WebServer extends NanoHTTPD {
 				}
 				return new Response("Error");
 			}
+    	}
+    	else if ( uri.equals("/api/getIP") )
+    	{
+    		return new Response(ipAddress);
     	}
     	
 		return new Response(Response.Status.NOT_FOUND, "text/html", "404");

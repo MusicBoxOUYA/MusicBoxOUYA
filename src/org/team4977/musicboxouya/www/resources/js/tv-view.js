@@ -1,4 +1,4 @@
-function call(){
+function call(){	
   request("api/nowplaying", "", function(result){
 	buildAlbumArt($("#album-art"), result);
     buildSongInfo($("#song-info"), result);
@@ -10,6 +10,11 @@ function call(){
 }
 $( document ).ready(function(){
   call();
+  request("api/getIP", "", function(result)
+  {
+	  $("#connection-info").text("Visit http://"+result+":8080/ to queue songs");
+  });
+  
   setInterval(call, 1000);
 });
 
