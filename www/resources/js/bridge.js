@@ -11,13 +11,13 @@ function request(url, sendData, callBack){
 
 function likeSong(id){
   request("api/like.html", "song="+id, function(data){
-    console.log(JSON.parse(data));
+    console.log("Liking song");
   });
 }
 
 function dislikeSong(id){
   request("api/dislike.html", "song="+id, function(data){
-    console.log(JSON.parse(data))
+    console.log("Dis;liking song");
   });
 }
 
@@ -60,6 +60,11 @@ function buildSongTime(parentEle, res){
 	insertElementAt(currentTime,parentEle[0]);
 	insertElementAt(progressPercent,parentEle[1]);
 	insertElementAt(durationTime,parentEle[2]);
+}
+
+function setButtonSongId(parentEle, res){
+  var data = JSON.parse(res);
+  parentEle.data("song-id", data.song.id);
 }
 
 function buildQueueTable(parentEle, res){
