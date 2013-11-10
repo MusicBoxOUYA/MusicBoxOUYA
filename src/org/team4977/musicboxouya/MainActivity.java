@@ -37,7 +37,7 @@ public class MainActivity extends Activity implements LibraryRefreshFinishedList
 		getActionBar().hide();
 		setContentView(webView);
 		
-		library = new LocalLibrary("/sdcard/MusicTest");
+		library = new LocalLibrary("/mnt/usbdrive/Music");
 		library.setRefreshFinishedListener(this);
 			
 		library.refresh();
