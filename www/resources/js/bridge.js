@@ -9,6 +9,24 @@ function request(url, sendData, callBack){
 	})
 }
 
+function likeSong(id){
+  request("api/like.html", "song="+id, function(data){
+    console.log(JSON.parse(data));
+  });
+}
+
+function dislikeSong(id){
+  request("api/dislike.html", "song="+id, function(data){
+    console.log(JSON.parse(data))
+  });
+}
+
+function queueSong(id){
+  request("api/queue.html", "song="+id, function(data){
+    console.log(JSON.parse(data))
+  });
+}
+
 function buildSongInfo(parentEle, res){
 	var data = JSON.parse(res);
 	var name = createElement("h3", {"class":"song-title"}, data.song.title);
@@ -53,8 +71,13 @@ function buildSongTable(parentEle, res){
 	var table = new Table(["title", "album", "artist", "score", "add"], ["Song", "Album", "Artist", "+1", ""]);
   parentEle.html("");
 	table.setProperties("table", {width:"100%"});
-	table.addColumnProcessor("add", function(data){
-		return createElement("button", {"class":"button tiny"}, "Add To Queue");
+	table.addAdvancedColumnProcessor("add", function(data){
+    button = createElement("button", {"class":"button tiny"}, "Add To Queue");
+    $(button).click(function(){
+      console.log("queuing song " + data["id"]);
+      queueSong(data["id"]);
+    })
+		return button;
 	});
 	var html = table.buildTable(res);
 	insertElementAt(html, parentEle[0]);

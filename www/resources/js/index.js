@@ -3,7 +3,7 @@ function call(){
     buildSongInfo($("#song-info"), result);
     buildSongTime($(".song-progress"), result);
   });
-  request("api/queue.html", "", function(result){
+  request("api/queue-list.html", "", function(result){
     buildQueueTable($("#queue"), JSON.parse(result));
   });
 }

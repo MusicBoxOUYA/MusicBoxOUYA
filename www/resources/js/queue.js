@@ -1,5 +1,5 @@
 function call(){
-  request("api/queue.html", "", function(result){
+  request("api/queue-list.html", "", function(result){
     buildQueueTable($("#queue-list"), JSON.parse(result));
   });
 }
