@@ -1,6 +1,6 @@
 function call(){
   request("api/nowplaying", "", function(result){
-    buildAlbumArt$("#album-art"), result);
+    buildAlbumArt($("#album-art"), result);
     buildSongInfo($("#song-info"), result);
     buildSongTime($(".song-progress"), result);
     setButtonSongId($("#like-button"), result);

@@ -27,10 +27,9 @@ function queueSong(id){
   });
 }
 
-function buildAlbumArt(parentEle, res){
+function buildAlbumArt(imgEle, res){
   var data = JSON.parse(res);
-  var img = createElement("img", {"src":"api/art?song="+data.song.id});
-  insertElementAt(img, parentEle[0]);
+  imgEle.attr("src", "/api/art?song="+data.song.id);
 }
 
 function buildSongInfo(parentEle, res){
@@ -108,7 +107,7 @@ function buildAlbumList(parentEle, res){
 	for(album in data){
 		var li = createElement("li");
     var a = createElement("a", {"href":"#", "data-reveal-id":"album-song-list", "data-album-id":album})
-		var img = createElement("img", {"src":"api/art?song="+data[album].id});
+		var img = createElement("img", {"src":"/api/art?song="+data[album].songs[0].id});
 		var info = createElement("ul", {"class":"no-bullet ul-margin-bottom"});
 		var title = createElement("li", {"class":"album-artist"}, data[album].title);
 		var artist = createElement("li", {"class":"album-artist"}, data[album].artist);
