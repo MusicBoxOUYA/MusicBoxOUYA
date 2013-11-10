@@ -26,9 +26,9 @@ public class WebServer extends NanoHTTPD {
     	{
     		return new Response(Response.Status.OK, "text/html", WebServer.class.getResourceAsStream("/org/team4977/musicboxouya/www/index.html"));
     	}
-    	else if ( uri.equals("/response.html") )
+    	else if ( uri.equals("/library.html") )
     	{
-    		return new Response(Response.Status.OK, "text/html", WebServer.class.getResourceAsStream("/org/team4977/musicboxouya/www/response.html"));
+    		return new Response(Response.Status.OK, "text/html", WebServer.class.getResourceAsStream("/org/team4977/musicboxouya/www/library.html"));
     	}
     	else if ( uri.equals("/queue.html") )
     	{
