@@ -10,19 +10,19 @@ function request(url, sendData, callBack){
 }
 
 function likeSong(id){
-  request("api/like.html", "song="+id, function(data){
+  request("api/like", "song="+id, function(data){
     console.log("Liking song");
   });
 }
 
 function dislikeSong(id){
-  request("api/dislike.html", "song="+id, function(data){
+  request("api/dislike", "song="+id, function(data){
     console.log("Dis;liking song");
   });
 }
 
 function queueSong(id){
-  request("api/queue.html", "song="+id, function(data){
+  request("api/queue", "song="+id, function(data){
     console.log(JSON.parse(data))
   });
 }

@@ -1,5 +1,5 @@
 function call(){
-  request("api/album.html", "", function(result){
+  request("api/library", "", function(result){
     buildAlbumList($("#album-list"), result);
     $(document).foundation();
   });
