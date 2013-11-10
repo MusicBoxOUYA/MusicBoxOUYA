@@ -5,15 +5,119 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width" />
-  <title>MusicBox|Library</title>
-  <link rel="stylesheet" href="/resources/css/normalize.css" />
-  <link rel="stylesheet" href="/resources/css/foundation.css" />
-  <link rel="stylesheet" href="/resources/css/app.css" />
-  <script src="/resources/js/vendor/custom.modernizr.js"></script>
+  <title>MusicBox | Library</title>
+  <link rel="stylesheet" href="resources/css/normalize.css" />
+  <link rel="stylesheet" href="resources/css/foundation.css" />
+  <link rel="stylesheet" href="resources/css/main.css" />
+  <link rel="stylesheet" href="resources/css/library.css" />
+  <script src="resources/js/object.js" type="text/javascript" charset="utf-8"></script>
+  <script src="resources/js/table.js" type="text/javascript" charset="utf-8"></script>
+  <script src="resources/js/jquery-2.0.3.min.js"></script>
+  <script src="resources/js/vendor/custom.modernizr.js"></script>
+  <script src="resources/js/foundation.min.js"></script>
+  <script src="resources/js/bridge.js"></script>
 </head>
 <body>
-  <script>
+  <div class="sticky">
+    <nav class="top-bar">
+      <ul class="title-area">
+        <li class="name"><h1><a href="index.html">MusicBox</a></h1></li>
+      </ul>
+      <section class="top-bar-section">
+        <ul class="left">
+          <li class="active"><a href="index.html">Now Playing</a></li>
+          <li class="divider"></li>
+          <li class=""><a href="#">Library</a></li>
+          <li class="divider"></li>
+          <li class=""><a href="queue.html">Queue</a></li>
+        </ul>
+      </section>
+    </nav>
+  </div>
+  <div class="container">
+    <div class="row">
+      <div class="small-12">
+        <h1>Library</h1>
+        <dl class="sub-nav">
+          <dt><a href="#">List:</a></dt>
+          <dd class="active"><a href="#">Artist</a><dd>
+          <dd><a href="#">Album</a><dd>
+        </dl>
+        <ul class="album-list small-block-grid-4">
+          
+        </ul>
+        <ul class="small-block-grid-4">
+          <li>
+            <a href="#" data-reveal-id="infoModal">
+              <img src="resources/cover-art.jpg">
+            </a>
+            <ul class="no-bullet ul-margin-bottom">
+              <li>Artist</li>
+            </ul>
+          </li>
+          <li><img src="resources/cover-art.jpg">
+            <ul class="no-bullet ul-margin-bottom">
+              <li>Artist</li>
+            </ul>
+          </li>
+          <li><img src="resources/cover-art.jpg">
+            <ul class="no-bullet ul-margin-bottom">
+              <li>Artist</li>
+            </ul>
+          </li>
+          <li><img src="resources/cover-art.jpg">
+            <ul class="no-bullet ul-margin-bottom">
+              <li>Artist</li>
+            </ul>
+          </li>
+          <li><img src="resources/cover-art.jpg">
+            <ul class="no-bullet ul-margin-bottom">
+              <li>Artist</li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div id="infoModal" class="reveal-modal large">
+    <h2>Daft Punk</h2>
+    <table width="100%">
+        <thead>
+          <tr>
+            <th>Song</th>
+            <th>Album</th>
+            <th>Artist</th>
+            <th width="15px">+1</th>
+            <th width="110px"></th>`
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Derezzed</td>
+            <td>TRON:Legacy</td>
+            <td>Daft Punk</td>
+            <td>10</td>
+            <td><button class="button tiny">Add To Queue</button></td>
+          </tr>
+          <tr>
+            <td>Derezzed</td>
+            <td>TRON:Legacy</td>
+            <td>Daft Punk</td>
+            <td>10</td>
+            <td><button class="button tiny">Add To Queue</button></td>
+          </tr>
+        </tbody>
+    </table>
+    <a class="close-reveal-modal">&#215;</a>
+  </div>
+<script>
+  document.write('<script src=' +
+  ('__proto__' in {} ? 'js/vendor/zepto' : 'js/vendor/jquery') +
+  '.js><\/script>')
+</script>
+<script>
     $(document).foundation();
-  </script>
+</script>
 </body>
 </html>
+

@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<!--[if IE 8]>         <html class="no-js lt-ie9" lang="en"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en"> <!--<![endif]-->
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width" />
+  <title>MusicBox | Queue</title>
+  <link rel="stylesheet" href="resources/css/normalize.css" />
+  <link rel="stylesheet" href="resources/css/foundation.css" />
+  <link rel="stylesheet" href="resources/css/main.css" />
+  <script src="resources/js/jquery-2.0.3.min.js"></script>
+  <script src="resources/js/vendor/custom.modernizr.js"></script>
+  <script src="resources/js/foundation.min.js"></script>
+</head>
+<body>
+  <div class="sticky">
+    <nav class="top-bar">
+      <ul class="title-area">
+        <li class="name"><h1><a href="index.html">MusicBox</a></h1></li>
+      </ul>
+      <section class="top-bar-section">
+        <ul class="left">
+          <li class=""><a href="index.html">Now Playing</a></li>
+          <li class="divider"></li>
+          <li class=""><a href="library.html">Library</a></li>
+          <li class="divider"></li>
+          <li class="active"><a href="#">Queue</a></li>
+        </ul>
+      </section>
+    </nav>
+  </div>
+  <div class="container">
+    <div class="row">
+      <div class="small-12">
+        <h1>Queue</h1>
+        <dl class="sub-nav">
+          <dt><a href="#">List:</a></dt>
+          <dd class="active"><a href="#">First-Last</a><dd>
+          <dd><a href="#">Last-First</a><dd>
+          <dd><a href="#">Artist</a></dd>
+        </dl>
+        <table width="100%">
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Album</th>
+              <th>Time</th>
+              <th>Artist</th>
+              <th>Genre</th>
+              <th>+1</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>1</td>
+              <td>More Monsters and Nice Sprites</td>
+              <td>4:22</td>
+              <td>Skrillex</td>
+              <td>Dubstep</td>
+              <td>10</td>
+            </tr>
+            <tr>
+              <td>2</td>
+              <td>More Monsters and Nice Sprites</td>
+              <td>4:22</td>
+              <td>Skrillex</td>
+              <td>Dubstep</td>
+              <td>10</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+  <script>
+    document.write('<script src=' +
+    ('__proto__' in {} ? 'resources/js/vendor/zepto' : 'js/vendor/jquery') +
+    '.js><\/script>')
+  </script>
+  <script>
+    $(document).foundation();
+  </script>
+</body>
+</html>
