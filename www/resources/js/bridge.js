@@ -26,6 +26,7 @@ function buildSongInfo(parentEle, res){
 
 function buildSongTable(parentEle, res){
 	var table = new Table(["title", "album", "artist", "likes", "add"], ["Song", "Album", "Artist", "+1", ""]);
+  parentEle.html("");
 	table.setProperties("table", {width:"100%"});
 	table.addColumnProcessor("add", function(data){
 		return createElement("button", {"class":"button tiny"}, "Add To Queue");
