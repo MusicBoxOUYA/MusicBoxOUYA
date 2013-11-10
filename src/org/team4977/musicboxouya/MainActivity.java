@@ -12,16 +12,22 @@ import org.team4977.musicboxouya.player.MusicPlayer;
 import android.os.Bundle;
 import android.app.Activity;
 import android.view.Menu;
+import android.webkit.WebView;
 
 public class MainActivity extends Activity implements LibraryRefreshFinishedListener {
 
 	MusicPlayer player = null; 
 	WebServer webserver = null;
 	LocalLibrary library = null;
+	WebView webView;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_main);
+		
+		webView = new WebView(this);
+		webView.getSettings().setJavaScriptEnabled(true);
+		getActionBar().hide();
+		setContentView(webView);
 		
 		library = new LocalLibrary("/sdcard/MusicTest");
 		library.setRefreshFinishedListener(this);
@@ -47,6 +53,7 @@ public class MainActivity extends Activity implements LibraryRefreshFinishedList
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		webView.loadUrl("http://localhost:8080/tvView.html");
 	}
 
 }
