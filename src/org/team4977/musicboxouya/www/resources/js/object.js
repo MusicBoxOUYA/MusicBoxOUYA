@@ -11,50 +11,50 @@
 */
 
 function setObject(obj,array){
-	for(key in array){
-		var prp = key;
-		var val = array[key];
-		obj[prp] = val;
-	}
+  for(key in array){
+    var prp = key;
+    var val = array[key];
+    obj[prp] = val;
+  }
 }
 
 function createText(content){
-	return document.createTextNode(content);
+  return document.createTextNode(content);
 }
 
 function createElement(type, atr, content, inEle){
-	var ele = document.createElement(type);
+  var ele = document.createElement(type);
 
-	for(key in atr){
-		var prp = key;
-		var val = atr[key];
-		ele.setAttribute(prp,val);
-	}
-	
-	if(content != undefined){
-		var node = document.createTextNode(content);
-		ele.appendChild(node);
-	}
-	
-	if(inEle != undefined){
-		ele.appendChild(inEle);
-	}
-	
-	return ele;
+  for(key in atr){
+    var prp = key;
+    var val = atr[key];
+    ele.setAttribute(prp,val);
+  }
+  
+  if(content != undefined){
+    var node = document.createTextNode(content);
+    ele.appendChild(node);
+  }
+  
+  if(inEle != undefined){
+    ele.appendChild(inEle);
+  }
+  
+  return ele;
 }
 
 function setElement(ele, atr){
-	for(key in atr){
-		var prp = key;
-		var val = atr[key];
-		ele.setAttribute(prp,val);
-	}
+  for(key in atr){
+    var prp = key;
+    var val = atr[key];
+    ele.setAttribute(prp,val);
+  }
 }
 
 function insertElementAt(ele, parent){
-	parent.appendChild(ele);
-	
-	return ele;
+  parent.appendChild(ele);
+  
+  return ele;
 }
 
 function removeElement(ele){
@@ -62,14 +62,14 @@ function removeElement(ele){
 }
 
 function updateElementContent(ele,content){
-	ele.innerHTML='';
-	var node = document.createTextNode(content);
-	ele.appendChild(node);
+  ele.innerHTML='';
+  var node = document.createTextNode(content);
+  ele.appendChild(node);
 }
 
 function cloneArray(a){
-	out = new Array();
-	for ( var i = 0; i < a.length; i++ )
-	out.push(a[i]);
-	return out;
+  out = new Array();
+  for ( var i = 0; i < a.length; i++ )
+  out.push(a[i]);
+  return out;
 }
