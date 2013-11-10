@@ -1,5 +1,9 @@
 package org.team4977.musicboxouya.media;
 
+import org.team4977.musicboxouya.database.library.LibraryProvider;
+
+import android.graphics.Bitmap;
+
 public class Song {
 	
 	public static int NEXT_ID = 0;
@@ -70,6 +74,16 @@ public class Song {
 	public String toJSON()
 	{
 		return toJSON(false);
+	}
+	
+	public Bitmap getArt()
+	{
+		return LibraryProvider.getInitalizedProvider().getArtForSong(this);
+	}
+	
+	public byte[] getRawArt()
+	{
+		return LibraryProvider.getInitalizedProvider().getRawArtForSong(this);
 	}
 	
 	public String toJSON(boolean fullData)

@@ -3,10 +3,12 @@ package org.team4977.musicboxouya;
 import java.io.IOException;
 
 import lobos.andrew.aztec.Aztec;
+import lobos.andrew.aztec.BinarySafeHTTPResponse;
 import lobos.andrew.aztec.EasyRequestHandler;
 import lobos.andrew.aztec.HTTPRequest;
 import lobos.andrew.aztec.HTTPResponse;
 import lobos.andrew.aztec.RequestHandler;
+import lobos.andrew.aztec.SendableHTTPResponse;
 
 import org.team4977.musicboxouya.database.library.LibraryProvider;
 import org.team4977.musicboxouya.database.library.LibraryRefreshFinishedListener;
@@ -65,6 +67,14 @@ public class MainActivity extends Activity implements LibraryRefreshFinishedList
 						} catch (Exception e) {
 							System.out.println("Request for song that does not exist!");
 						}
+					}
+					
+					if ( !req.getParam("limit").equals("") )
+					{
+						try {
+							int limit = Integer.parseInt(req.getParam("limit"));
+							return new HTTPResponse(200, player.getQueue().toJSON(limit));
+						}catch (Exception e) {}
 					}
 					return new HTTPResponse(200, player.getQueue().toJSON());
 				}
@@ -163,6 +173,32 @@ public class MainActivity extends Activity implements LibraryRefreshFinishedList
 				{
 					player.pause();
 					return new HTTPResponse(200, "{\"success\": true, \"paused\": "+(player.isPaused()?"true":"false")+"}");
+				}
+			}
+		});
+		
+		reqHandler.registerPage("/api/art", new RequestHandler()
+		{
+			public SendableHTTPResponse handleHTTPRequest(HTTPRequest req) {
+				if ( player == null )
+					return new HTTPResponse(200, "Waiting for library refresh...");
+				else
+				{
+					Song song = library.getSong(Integer.parseInt(req.getParam("song")));
+					if ( song != null )
+					{
+						byte[] art = song.getRawArt();
+						if ( art != null )
+						{
+							return new BinarySafeHTTPResponse(200, HTTPResponse.stringForResponseCode(200), art, "image/bmp");
+						}
+						else
+						{
+							return new HTTPResponse(200, "No art");
+						}
+							
+					}
+					return new HTTPResponse(500, "Error");
 				}
 			}
 		});

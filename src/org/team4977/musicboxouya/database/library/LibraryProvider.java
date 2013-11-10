@@ -6,6 +6,7 @@ import org.team4977.musicboxouya.media.Album;
 import org.team4977.musicboxouya.media.Artist;
 import org.team4977.musicboxouya.media.Song;
 
+import android.graphics.Bitmap;
 import android.os.AsyncTask;
 
 public abstract class LibraryProvider {
@@ -105,6 +106,9 @@ public abstract class LibraryProvider {
 	{
 		return artists.values().toArray(new Artist[artists.size()]);
 	}
+	
+	public abstract Bitmap getArtForSong(Song s);
+	public abstract byte[] getRawArtForSong(Song s);
 	
 	public String toJSON()
 	{

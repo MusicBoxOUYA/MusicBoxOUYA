@@ -6,6 +6,8 @@ import org.team4977.musicboxouya.media.Album;
 import org.team4977.musicboxouya.media.Artist;
 import org.team4977.musicboxouya.media.Song;
 
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.media.MediaMetadataRetriever;
 
 public class LocalLibrary extends LibraryProvider {
@@ -62,6 +64,22 @@ public class LocalLibrary extends LibraryProvider {
 	{
 		processDirectory(path);
 		System.out.println("DONE LIBRARY");
+	}
+
+	@Override
+	public Bitmap getArtForSong(Song s) {
+		byte[] picture = getRawArtForSong(s);
+		Bitmap bitmap = BitmapFactory.decodeByteArray(picture, 0, picture.length);
+		return bitmap;
+	}
+
+	@Override
+	public byte[] getRawArtForSong(Song s) {
+		MediaMetadataRetriever metadata = new MediaMetadataRetriever();
+		metadata.setDataSource(s.getPath());
+		byte[] picture = metadata.getEmbeddedPicture();
+		metadata.release();
+		return picture;
 	}
 
 }
