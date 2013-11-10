@@ -10,6 +10,10 @@
   <link rel="stylesheet" href="resources/css/foundation.css" />
   <link rel="stylesheet" href="resources/css/main.css" />
   <script src="resources/js/jquery-2.0.3.min.js"></script>
+  <script src="resources/js/object.js" type="text/javascript" charset="utf-8"></script>
+  <script src="resources/js/table.js" type="text/javascript" charset="utf-8"></script>
+  <script src="resources/js/bridge.js"></script>
+  <script src="resources/js/queue.js"></script>
   <script src="resources/js/vendor/custom.modernizr.js"></script>
   <script src="resources/js/foundation.min.js"></script>
 </head>
@@ -40,36 +44,8 @@
           <dd><a href="#">Last-First</a><dd>
           <dd><a href="#">Artist</a></dd>
         </dl>
-        <table width="100%">
-          <thead>
-            <tr>
-              <th>#</th>
-              <th>Album</th>
-              <th>Time</th>
-              <th>Artist</th>
-              <th>Genre</th>
-              <th>+1</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>1</td>
-              <td>More Monsters and Nice Sprites</td>
-              <td>4:22</td>
-              <td>Skrillex</td>
-              <td>Dubstep</td>
-              <td>10</td>
-            </tr>
-            <tr>
-              <td>2</td>
-              <td>More Monsters and Nice Sprites</td>
-              <td>4:22</td>
-              <td>Skrillex</td>
-              <td>Dubstep</td>
-              <td>10</td>
-            </tr>
-          </tbody>
-        </table>
+        <div id="queue-list">
+        </div>
       </div>
     </div>
   </div>
