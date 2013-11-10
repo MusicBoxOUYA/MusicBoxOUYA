@@ -44,7 +44,7 @@ public class MusicPlayer implements OnCompletionListener {
 		if ( nowPlaying == null )
 			playSong(song);
 		else
-			queue.push(song);
+			queue.add(song);
 	}
 	
 	public MusicQueue getQueue()
