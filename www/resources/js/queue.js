@@ -4,6 +4,6 @@ function call(){
   });
 }
 $( document ).ready(function(){
+  call();
   setInterval(call, 1000);
 });
-call();
