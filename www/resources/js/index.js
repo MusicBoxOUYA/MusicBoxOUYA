@@ -1,6 +1,7 @@
 function call(){
   request("api/playing.html", "", function(result){
     buildSongInfo($("#song-info"), result);
+    buildSongTime($(".song-progress"), result);
   });
   request("api/song-list.html", "", function(result){
     buildSongTable($("#queue"), JSON.parse(result));
