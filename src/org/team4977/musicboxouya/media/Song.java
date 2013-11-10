@@ -14,14 +14,17 @@ public class Song {
 	String title;
 	Artist artist;
 	Album album;
+	String path;
+	int likes;
 	
-	
-	public Song(int id, String title, Album album, Artist artist)
+	public Song(int id, String title, Album album, Artist artist, String path)
 	{
 		this.id = id;
 		this.title = title;
 		this.artist = artist;
 		this.album = album;
+		this.path = path;
+		this.likes = 0;
 	}
 	
 	public int getID()
@@ -44,6 +47,25 @@ public class Song {
 		return album;
 	}
 	
+	public String getPath()
+	{
+		return path;
+	}
+	
+	public void like()
+	{
+		likes++;
+	}
+	
+	public void dislike()
+	{
+		likes--;
+	}
+	
+	public int getLikes()
+	{
+		return likes;
+	}
 	
 	public String toJSON()
 	{
@@ -57,10 +79,10 @@ public class Song {
 		output += "\"title\": \""+getTitle()+"\",";
 		if ( fullData )
 		{
-			output += "\"album\": \""+getAlbum()+"\",";
-			output += "\"artist\": \""+getArtist()+"\",";
+			output += "\"album\": \""+getAlbum().getName()+"\",";
+			output += "\"artist\": \""+getArtist().getName()+"\",";
 		}
-		output += "\"score\": 0";
+		output += "\"score\": "+getLikes();
 		output += "}";
 		return output;
 	}

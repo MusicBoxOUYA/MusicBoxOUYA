@@ -32,6 +32,7 @@ public class Album {
 	{
 		String output = "{";
 		output += "\"title\": \""+getName()+"\",";
+		output += "\"artist\": \""+artist.getName()+"\",";
 		output += "\"songs\":[";
 		Song[] songs = getSongs();
 		for ( int i = 0; i < songs.length; i++ )
