@@ -17,7 +17,7 @@ function likeSong(id){
 
 function dislikeSong(id){
   request("api/dislike", "song="+id, function(data){
-    console.log("Dis;liking song");
+    console.log("Disliking song");
   });
 }
 
@@ -119,7 +119,7 @@ function buildSongTable(parentEle, res){
       });
       console.log("queuing song " + data["id"]);
       queueSong(data["id"]);
-    })
+    });
     return button;
   });
   var html = table.buildTable(res);

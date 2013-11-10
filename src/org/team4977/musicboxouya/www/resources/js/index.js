@@ -15,9 +15,17 @@ $( document ).ready(function(){
   setInterval(call, 1000);
   $("#like-button").click(function(){
     likeSong($(this).data("song-id"));
+    $(this).attr("disabled", "disabled").delay(10000).queue(function(next){
+      $(this).removeAttr("disabled");
+      next();
+    });
   });
   $("#dislike-button").click(function(){
     dislikeSong($(this).data("song-id"));
+    $(this).attr("disabled", "disabled").delay(10000).queue(function(next){
+      $(this).removeAttr("disabled");
+      next();
+    });
   });
 });
 
