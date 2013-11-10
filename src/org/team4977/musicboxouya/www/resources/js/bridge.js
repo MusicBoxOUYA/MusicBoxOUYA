@@ -82,7 +82,7 @@ function buildUpNext(parentEle, res){
   insertElementAt(artist, p);
   insertElementAt(dash, p);
   insertElementAt(album, p);
-  if(data.length > 0)
+  if(data.length != 0)
     insertElementAt(p, parentEle[0]);
 }
 
