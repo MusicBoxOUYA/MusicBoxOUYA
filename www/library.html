@@ -48,7 +48,9 @@
         </ul>
         <ul class="small-block-grid-4">
           <li>
-            <img src="resources/cover-art.jpg">
+            <a href="#" data-reveal-id="infoModal">
+              <img src="resources/cover-art.jpg">
+            </a>
             <ul class="no-bullet ul-margin-bottom">
               <li>Artist</li>
             </ul>
@@ -58,7 +60,6 @@
               <li>Artist</li>
             </ul>
           </li>
-
           <li><img src="resources/cover-art.jpg">
             <ul class="no-bullet ul-margin-bottom">
               <li>Artist</li>
@@ -75,41 +76,48 @@
             </ul>
           </li>
         </ul>
-        <div class="list">
-          
-        </div>
-        <table width="100%">
-          <thead>
-            <tr>
-              <th>Song</th>
-              <th>Album</th>
-              <th>Artist</th>
-              <th width="15px">+1</th>
-              <th width="110px"></th>`
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>Derezzed</td>
-              <td>TRON:Legacy</td>
-              <td>Daft Punk</td>
-              <td>10</td>
-              <td><button class="button tiny">Add To Queue</button></td>
-            </tr>
-            <tr>
-              <td>Derezzed</td>
-              <td>TRON:Legacy</td>
-              <td>Daft Punk</td>
-              <td>10</td>
-              <td><button class="button tiny">Add To Queue</button></td>
-            </tr>
-          </tbody>
-        </table>
       </div>
     </div>
   </div>
-  <script>
+  <div id="infoModal" class="reveal-modal large">
+    <h2>Daft Punk</h2>
+    <table width="100%">
+        <thead>
+          <tr>
+            <th>Song</th>
+            <th>Album</th>
+            <th>Artist</th>
+            <th width="15px">+1</th>
+            <th width="110px"></th>`
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Derezzed</td>
+            <td>TRON:Legacy</td>
+            <td>Daft Punk</td>
+            <td>10</td>
+            <td><button class="button tiny">Add To Queue</button></td>
+          </tr>
+          <tr>
+            <td>Derezzed</td>
+            <td>TRON:Legacy</td>
+            <td>Daft Punk</td>
+            <td>10</td>
+            <td><button class="button tiny">Add To Queue</button></td>
+          </tr>
+        </tbody>
+    </table>
+    <a class="close-reveal-modal">&#215;</a>
+  </div>
+<script>
+  document.write('<script src=' +
+  ('__proto__' in {} ? 'js/vendor/zepto' : 'js/vendor/jquery') +
+  '.js><\/script>')
+</script>
+<script>
     $(document).foundation();
-  </script>
+</script>
 </body>
 </html>
+
