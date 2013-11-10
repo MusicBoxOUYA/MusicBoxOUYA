@@ -28,6 +28,9 @@ public abstract class LibraryProvider {
 		initalizedProvider = this;
 	}
 	
+	public abstract boolean canRead();
+	public abstract void informationPrompt();
+	
 	public void setRefreshFinishedListener(LibraryRefreshFinishedListener listener)
 	{
 		refreshDoneListner = listener;
@@ -37,23 +40,30 @@ public abstract class LibraryProvider {
 	
 	public void refresh()
 	{
-		new AsyncTask<Void, Void, Boolean>()
+		if ( canRead() )
 		{
-
-			@Override
-			protected Boolean doInBackground(Void... params) {
-				doLibraryPopulate();
-				
-				return true;
-			}
-			
-			protected void onPostExecute(Boolean result)
+			new AsyncTask<Void, Void, Boolean>()
 			{
-				System.out.println("really done");
-				refreshDoneListner.libraryRefreshFinished(LibraryProvider.this);
-			}
-
-		}.execute();
+	
+				@Override
+				protected Boolean doInBackground(Void... params) {
+					doLibraryPopulate();
+					
+					return true;
+				}
+				
+				protected void onPostExecute(Boolean result)
+				{
+					System.out.println("really done");
+					refreshDoneListner.libraryRefreshFinished(LibraryProvider.this);
+				}
+	
+			}.execute();
+		}
+		else
+		{
+			informationPrompt();
+		}
 	}
 	
 	public Artist addArtist(String name)

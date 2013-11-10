@@ -13,11 +13,14 @@ import org.team4977.musicboxouya.database.library.LocalLibrary;
 import org.team4977.musicboxouya.media.Song;
 import org.team4977.musicboxouya.player.MusicPlayer;
 
+import tv.ouya.console.api.OuyaController;
+
 import android.net.wifi.WifiInfo;
 import android.net.wifi.WifiManager;
 import android.os.Bundle;
 import android.app.Activity;
 import android.content.Context;
+import android.view.KeyEvent;
 import android.view.Menu;
 import android.webkit.WebView;
 
@@ -31,13 +34,39 @@ public class MainActivity extends Activity implements LibraryRefreshFinishedList
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		OuyaController.init(this);
 		
-		webView = new WebView(this);
+		webView = new WebView(this)
+		{
+			public boolean onKeyDown(final int keyCode, KeyEvent event){
+			    //Get the player #     
+			    boolean handled = false;
+
+			    //Handle the input
+			    switch(keyCode){
+			        case OuyaController.BUTTON_O:
+			            if ( player != null )
+			            	player.pause();
+			            handled = true;
+			            break;
+			        case OuyaController.BUTTON_A:
+			            if ( player != null )
+			            	player.next();
+			            handled = true;
+			            break;
+			    }
+			    return handled || super.onKeyDown(keyCode, event);
+			}
+		};
+		webView.setInitialScale(1);
 		webView.getSettings().setJavaScriptEnabled(true);
+		webView.getSettings().setLoadWithOverviewMode(true);
+		webView.getSettings().setUseWideViewPort(true);
 		getActionBar().hide();
 		setContentView(webView);
+		webView.setSelected(true);
 		
-		library = new LocalLibrary("/mnt/usbdrive/Music");
+		library = new LocalLibrary(this, "/mnt/usbdrive/Music");
 		library.setRefreshFinishedListener(this);
 			
 		library.refresh();
@@ -47,6 +76,27 @@ public class MainActivity extends Activity implements LibraryRefreshFinishedList
 		int ip = wifiInfo.getIpAddress();
 		ipAddress = String.format("%d.%d.%d.%d", (ip & 0xff), (ip >> 8 & 0xff), (ip >> 16 & 0xff), (ip >> 24 & 0xff));
 		
+	}
+	
+	@Override
+	public boolean onKeyDown(final int keyCode, KeyEvent event){
+	    //Get the player #     
+	    boolean handled = false;
+
+	    //Handle the input
+	    switch(keyCode){
+	        case OuyaController.BUTTON_O:
+	            if ( player != null )
+	            	player.pause();
+	            handled = true;
+	            break;
+	        case OuyaController.BUTTON_A:
+	            if ( player != null )
+	            	player.next();
+	            handled = true;
+	            break;
+	    }
+	    return handled || super.onKeyDown(keyCode, event);
 	}
 
 	@Override
@@ -69,5 +119,6 @@ public class MainActivity extends Activity implements LibraryRefreshFinishedList
 		}
 		webView.loadUrl("http://localhost:8080/tvView.html");
 	}
+
 
 }

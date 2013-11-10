@@ -2,10 +2,15 @@ package org.team4977.musicboxouya.database.library;
 
 import java.io.File;
 import java.io.FileInputStream;
+
+import org.team4977.musicboxouya.MainActivity;
 import org.team4977.musicboxouya.media.Album;
 import org.team4977.musicboxouya.media.Artist;
 import org.team4977.musicboxouya.media.Song;
 
+import android.app.AlertDialog;
+import android.content.Context;
+import android.content.DialogInterface;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.media.MediaMetadataRetriever;
@@ -13,9 +18,28 @@ import android.media.MediaMetadataRetriever;
 public class LocalLibrary extends LibraryProvider {
 	
 	String path;
-	public LocalLibrary(String path)
+	Context context;
+	public LocalLibrary(Context context, String path)
 	{
+		this.context = context;
 		this.path = path;
+	}
+	
+	public boolean canRead()
+	{
+		File p = new File(path);
+		return p.exists() && p.canRead();
+	}
+	
+	public void informationPrompt()
+	{
+		AlertDialog.Builder alert = new AlertDialog.Builder(context).setTitle("Setup Information").setMessage("Insert a USB drive that contains a folder named \"Music\".").setPositiveButton("Retry", new DialogInterface.OnClickListener() {
+			@Override
+			public void onClick(DialogInterface dialog, int which) {
+				refresh();
+			}
+		});
+		alert.show();
 	}
 	
 	protected void processDirectory(String dir)
@@ -63,7 +87,6 @@ public class LocalLibrary extends LibraryProvider {
 	protected void doLibraryPopulate()
 	{
 		processDirectory(path);
-		System.out.println("DONE LIBRARY");
 	}
 
 	@Override

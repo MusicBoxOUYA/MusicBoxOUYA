@@ -83,6 +83,10 @@ public class WebServer extends NanoHTTPD {
     	{
     		return new Response(Response.Status.OK, "text/css", WebServer.class.getResourceAsStream("/org/team4977/musicboxouya/www/resources/css/library.css"));
     	}
+    	else if ( uri.equals("/resources/css/tv-view.css") )
+    	{
+    		return new Response(Response.Status.OK, "text/css", WebServer.class.getResourceAsStream("/org/team4977/musicboxouya/www/resources/css/tv-view.css"));
+    	}
     	
     	// Images
     	else if ( uri.equals("/resources/a.png") )
