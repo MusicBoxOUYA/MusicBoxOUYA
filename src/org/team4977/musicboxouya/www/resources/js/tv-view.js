@@ -5,7 +5,7 @@ function call(){
     buildSongTime($(".song-progress"), result);
   });
   request("api/queue?limit=1", "", function(result){
-    buildUpNext($("#up-next"), JSON.parse(result));
+    buildUpNext($("#up-next"), result);
   });
 }
 $( document ).ready(function(){
