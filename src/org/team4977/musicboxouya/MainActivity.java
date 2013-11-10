@@ -142,8 +142,28 @@ public class MainActivity extends Activity implements LibraryRefreshFinishedList
 		{
 			@Override
 			public HTTPResponse handleHTTPRequest(HTTPRequest req) {
-				player.next();
-				return new HTTPResponse(200, "{\"success\": true}");
+				if ( player == null )
+					return new HTTPResponse(200, "Waiting for library refresh...");
+				else
+				{
+					player.next();
+					return new HTTPResponse(200, "{\"success\": true}");
+				}
+			}
+		});
+		
+		
+		reqHandler.registerPage("/api/pause", new RequestHandler()
+		{
+			@Override
+			public HTTPResponse handleHTTPRequest(HTTPRequest req) {
+				if ( player == null )
+					return new HTTPResponse(200, "Waiting for library refresh...");
+				else
+				{
+					player.pause();
+					return new HTTPResponse(200, "{\"success\": true, \"paused\": "+(player.isPaused()?"true":"false")+"}");
+				}
 			}
 		});
 		
