@@ -52,10 +52,13 @@ function buildSongTime(parentEle, res){
     var currentMinutes = Math.floor((data.position/1000)/60);
     var currentSeconds = Math.floor((data.position/1000)%60);
     if(currentSeconds < 10){
-      currentSeconds = "0" +currentSeconds;
+      currentSeconds = "0" + currentSeconds;
     }
     var durationMinutes = Math.floor((data.duration/1000)/60);
     var durationSeconds = Math.floor((data.duration/1000)%60);
+    if(durationSeconds < 10){
+      durationSeconds = "0" + durationSeconds;
+    }
     var currentTimeParent = createElement("div", {"class":"small-1 columns"});
   var currentTime = createElement("span", {"class":""}, currentMinutes + ":" + currentSeconds);
   var durationTime = createElement("span", {"class":""}, durationMinutes + ":" + durationSeconds);
@@ -79,7 +82,8 @@ function buildUpNext(parentEle, res){
   insertElementAt(artist, p);
   insertElementAt(dash, p);
   insertElementAt(album, p);
-  insertElementAt(p, parentEle[0]);
+  if(data.length > 1)
+    insertElementAt(p, parentEle[0]);
 }
 
 function setButtonSongId(parentEle, res){
