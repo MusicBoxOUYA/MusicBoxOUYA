@@ -91,6 +91,10 @@ function buildSongTable(parentEle, res){
 	table.addAdvancedColumnProcessor("add", function(data){
     button = createElement("button", {"class":"button tiny"}, "Add To Queue");
     $(button).click(function(){
+      $(this).attr("disabled", "disabled").delay(10000).queue(function(next){
+        $(this).removeAttr("disabled");
+        next();
+      });
       console.log("queuing song " + data["id"]);
       queueSong(data["id"]);
     })
