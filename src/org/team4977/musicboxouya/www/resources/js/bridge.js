@@ -130,7 +130,7 @@ function buildAlbumList(parentEle, res){
   for(album in data){
     var li = createElement("li");
     var a = createElement("a", {"href":"#", "data-reveal-id":"album-song-list", "data-album-id":album})
-    var img = createElement("img", {"src":"/api/art?song="+data[album].songs[0].id});
+    var img = createElement("img", {"src":"/api/art?song="+data[album].songs[0].id, "width":"250", "height":"250"});
     var info = createElement("ul", {"class":"no-bullet ul-margin-bottom"});
     var title = createElement("li", {"class":"album-artist"}, data[album].title);
     var artist = createElement("li", {"class":"album-artist"}, data[album].artist);
