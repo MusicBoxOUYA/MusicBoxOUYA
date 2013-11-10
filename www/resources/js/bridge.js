@@ -43,16 +43,23 @@ function buildSongInfo(parentEle, res){
 }
 
 function buildSongTime(parentEle, res){
-  var data = JSON.parse(res);
-  var currentTimeParent = createElement("div", {"class":"small-1 columns"});
-var currentTime = createElement("span", {"class":""}, data.position*10);
-var durationTime = createElement("span", {"class":""}, data.duration*10);
-var percent = ((data.position/data.duration)*100);
-var progressPercent = createElement("span", {"class":"meter","style":"width: " + percent + "%"});
-parentEle.html("");
-insertElementAt(currentTime,parentEle[0]);
-insertElementAt(progressPercent,parentEle[1]);
-insertElementAt(durationTime,parentEle[2]);
+  	var data = JSON.parse(res);
+  	var currentMinutes = Math.floor((data.position/1000)/60);
+  	var currentSeconds = Math.floor((data.position/1000)%60);
+  	if(currentSeconds < 10){
+  		currentSeconds = "0" +currentSeconds;
+  	}
+  	var durationMinutes = Math.floor((data.duration/1000)/60);
+  	var durationSeconds = Math.floor((data.duration/1000)%60);
+  	var currentTimeParent = createElement("div", {"class":"small-1 columns"});
+	var currentTime = createElement("span", {"class":""}, currentMinutes + ":" + currentSeconds);
+	var durationTime = createElement("span", {"class":""}, durationMinutes + ":" + durationSeconds);
+	var percent = ((data.position/data.duration)*100);
+	var progressPercent = createElement("span", {"class":"meter","style":"width: " + percent + "%"});
+	parentEle.html("");
+	insertElementAt(currentTime,parentEle[0]);
+	insertElementAt(progressPercent,parentEle[1]);
+	insertElementAt(durationTime,parentEle[2]);
 }
 
 function buildQueueTable(parentEle, res){
