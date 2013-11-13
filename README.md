@@ -7,3 +7,4 @@ MusicBox's library is provided by a USB storage device connected to the console.
 
 Users are able to use the web interface to view the currently playing song, view the library, queue new songs, and vote on which songs should be played more often.
 
+(c) 2013 All rights reserved Andrew Lobos, Benjamin Thomas, and Collin Enders.
