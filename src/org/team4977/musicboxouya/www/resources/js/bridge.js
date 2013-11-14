@@ -34,7 +34,7 @@ function buildAlbumArt(imgEle, res){
 
 function buildSongInfo(parentEle, res){
   var data = JSON.parse(res);
-  var name = createElement("h3", {"class":"song-title"}, data.song.title);
+  var name = createElement("h2", {"class":"song-title"}, data.song.title);
   var p = createElement("p");
   var artist = createElement("span", {"class":"song-artist"}, data.song.artist);
   var br = createElement("br");
@@ -63,7 +63,7 @@ function buildSongTime(parentEle, res){
   var currentTime = createElement("span", {"class":""}, currentMinutes + ":" + currentSeconds);
   var durationTime = createElement("span", {"class":""}, durationMinutes + ":" + durationSeconds);
   var percent = ((data.position/data.duration)*100);
-  var progressPercent = createElement("span", {"class":"meter","style":"width: " + percent + "%"});
+  var progressPercent = createElement("div", {"class":"progress-bar progress-bar-info", "role":"progressbar","style":"width: " + percent + "%"});
   parentEle.html("");
   insertElementAt(currentTime,parentEle[0]);
   insertElementAt(progressPercent,parentEle[1]);
@@ -101,7 +101,7 @@ function buildQueueTable(parentEle, res){
   table.addAdvancedColumnProcessor("order", function(data){
     return counter++;
   });
-  table.setProperties("table", {width:"100%"});
+  table.setProperties("table", {"class":"table table-condensed table-striped"});
   var html = table.buildTable(res);
   insertElementAt(html, parentEle[0]);
 }
