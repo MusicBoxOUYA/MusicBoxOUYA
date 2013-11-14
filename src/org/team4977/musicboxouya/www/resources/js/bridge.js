@@ -109,9 +109,9 @@ function buildQueueTable(parentEle, res){
 function buildSongTable(parentEle, res){
   var table = new Table(["title", "album", "artist", "score", "add"], ["Song", "Album", "Artist", "+1", ""]);
   parentEle.html("");
-  table.setProperties("table", {width:"100%"});
+  table.setProperties("table", {"class":"table table-condensed table-striped"});
   table.addAdvancedColumnProcessor("add", function(data){
-    button = createElement("button", {"class":"button tiny"}, "Add To Queue");
+    button = createElement("button", {"class":"btn btn-info"}, "Add To Queue");
     $(button).click(function(){
       $(this).attr("disabled", "disabled").delay(10000).queue(function(next){
         $(this).removeAttr("disabled");
@@ -131,12 +131,12 @@ function buildAlbumList(parentEle, res){
   var data = JSON.parse(res);
   parentEle.html("");
   for(album in data){
-    var li = createElement("li");
-    var a = createElement("a", {"href":"#", "data-reveal-id":"album-song-list", "data-album-id":album})
-    var img = createElement("img", {"src":"/api/art?song="+data[album].songs[0].id, "width":"250", "height":"250"});
-    var info = createElement("ul", {"class":"no-bullet ul-margin-bottom"});
-    var title = createElement("li", {"class":"album-artist"}, data[album].title);
-    var artist = createElement("li", {"class":"album-artist"}, data[album].artist);
+    var li = createElement("div", {"class":"col-sm-3"});
+    var a = createElement("a", {"href":"#", "data-toggle":"modal", "data-target":"#album-song-list", "data-album-id":album})
+    var img = createElement("img", {"src":"/api/art?song="+data[album].songs[0].id, "class":" center-block img-responsive"});
+    var info = createElement("div", {"class":"text-center"});
+    var title = createElement("p", {"class":"album-artist"}, data[album].title);
+    var artist = createElement("p", {"class":"album-artist lead small"}, data[album].artist);
     insertElementAt(img, a);
     insertElementAt(a, li);
     insertElementAt(info, li);
