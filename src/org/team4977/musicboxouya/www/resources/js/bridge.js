@@ -29,11 +29,14 @@ function queueSong(id){
 
 function buildAlbumArt(imgEle, res){
   var data = JSON.parse(res);
-  var img = new Image();
   var source = "/api/art?song="+data.song.id;
-  imgEle.attr("src", source).load(function(){
-    $(this).hide().removeClass("loading").fadeIn();
-  });
+  var test = imgEle.data("src") == null ? source : imgEle.data("src");
+  if(source != imgEle.data("src")){
+    imgEle.data("src", source).attr("src", source).fadeOut().load(function(){
+      $(this).fadeIn();
+    });
+  }
+  
   
 }
 
