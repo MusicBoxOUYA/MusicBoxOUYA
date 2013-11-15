@@ -30,7 +30,7 @@ function queueSong(id){
 function buildAlbumArt(imgEle, res){
   var data = JSON.parse(res);
   var img = new Image();
-  var source = "http://dummyimage.com/250x250/000/fff"; //"/api/art?song="+data.song.id;
+  var source = "/api/art?song="+data.song.id;
   imgEle.attr("src", source).load(function(){
     $(this).hide().removeClass("loading").fadeIn();
   });
@@ -148,7 +148,7 @@ function buildAlbumList(parentEle, res){
     var title = createElement("p", {"class":"album-artist"}, data[album].title);
     var artist = createElement("p", {"class":"album-artist lead small"}, data[album].artist);
     
-    var source = "http://lorempixel.com/250/250/"; //"/api/art?song="+data[album].songs[0].id;
+    var source = "/api/art?song="+data[album].songs[0].id;
     $(img).attr("src", source).load(function(){
       $(this).hide().removeClass("loading").fadeIn();
     });
