@@ -29,7 +29,12 @@ function queueSong(id){
 
 function buildAlbumArt(imgEle, res){
   var data = JSON.parse(res);
-  imgEle.attr("src", "/api/art?song="+data.song.id);
+  var img = new Image();
+  var source = "http://dummyimage.com/250x250/000/fff"; //"/api/art?song="+data.song.id;
+  imgEle.attr("src", source).load(function(){
+    $(this).hide().removeClass("loading").fadeIn();
+  });
+  
 }
 
 function buildSongInfo(parentEle, res){
@@ -124,6 +129,9 @@ function buildSongTable(parentEle, res){
   });
   var html = table.buildTable(res);
   insertElementAt(html, parentEle[0]);
+  parentEle.load(function(){
+    alert("loaded");
+  })
 }
 
 function buildAlbumList(parentEle, res){
@@ -131,18 +139,28 @@ function buildAlbumList(parentEle, res){
   var data = JSON.parse(res);
   parentEle.html("");
   for(album in data){
-    var li = createElement("div", {"class":"col-sm-3"});
+    var div = createElement("div", {"class":"col-sm-3"});
+    var holder = createElement("div", {"class":"album-holder"});
+    var holderInner = createElement("div", {"class":"place-holder album-holder-inner"})
     var a = createElement("a", {"href":"#", "data-toggle":"modal", "data-target":"#album-song-list", "data-album-id":album})
-    var img = createElement("img", {"src":"/api/art?song="+data[album].songs[0].id, "class":" center-block img-responsive"});
+    var img = createElement("img", {"src":"resources/loading.gif", "class":"img-responsive album-art loading"});
     var info = createElement("div", {"class":"text-center"});
     var title = createElement("p", {"class":"album-artist"}, data[album].title);
     var artist = createElement("p", {"class":"album-artist lead small"}, data[album].artist);
+    
+    var source = "http://lorempixel.com/250/250/"; //"/api/art?song="+data[album].songs[0].id;
+    $(img).attr("src", source).load(function(){
+      $(this).hide().removeClass("loading").fadeIn();
+    });
+    
     insertElementAt(img, a);
-    insertElementAt(a, li);
-    insertElementAt(info, li);
+    insertElementAt(a, holderInner);
+    insertElementAt(holderInner, holder);
     insertElementAt(title, info);
     insertElementAt(artist, info);
-    insertElementAt(li, parentEle[0]);
+    insertElementAt(holder, div);
+    insertElementAt(info, div);
+    insertElementAt(div, parentEle[0]);
     albumSongs.push(data[album].songs);
     $(a).data("songs", data[album].songs);
     $(a).data("title", data[album].title);
