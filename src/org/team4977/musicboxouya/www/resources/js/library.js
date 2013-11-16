@@ -1,7 +1,24 @@
 function call(){
   request("api/library", "", function(result){
     buildAlbumList($("#album-list"), result);
+  }, function(){
+    $("#connection-error-alert").modal({
+      keyboard: false,
+      backdrop:"static"
+    }).modal("show");
   });
 }
-$( document ).ready(function(){});
+
+function startCall(){
+  window.console&&console.log("Starting Call");
+  call();
+}
+
+$( document ).ready(function(){
+  startCall();
+  $("#connection-error-alert").on("hidden.bs.modal", function () {
+    startCall();
+  })
+});
 call();
+

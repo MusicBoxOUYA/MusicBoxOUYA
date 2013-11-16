@@ -1,10 +1,14 @@
-function request(url, sendData, callBack){
+function request(url, sendData, callBack, errorCallBack){
+  errorCallBack = typeof errorCallBack === "function" ? errorCallBack : function(){};
   $.ajax({
     url:url,
     type:"GET",
     data:sendData,
     success:function(result){
       callBack(result)
+    },
+    error:function(result){
+      errorCallBack(result);
     }
   })
 }
