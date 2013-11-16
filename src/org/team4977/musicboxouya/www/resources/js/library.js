@@ -11,7 +11,7 @@ function call(){
 
 function startCall(){
   window.console&&console.log("Starting Call");
-  call();
+  setTimeout(call, 1000);
 }
 
 $( document ).ready(function(){
