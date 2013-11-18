@@ -2,12 +2,13 @@ var callID;
 
 function call(){
   request("api/nowplaying", "", function(result){
+    $("#album-art").removeClass("loading");
     buildAlbumArt($("#album-art"), result);
     buildSongInfo($("#song-info"), result);
     buildSongTime($(".song-progress"), result);
     setButtonSongId($("#like-button"), result);
     setButtonSongId($("#dislike-button"), result);
-  }, function(){
+  }, function(data){
     stopCall();
     $("#connection-error-alert").modal({
       keyboard: false,
