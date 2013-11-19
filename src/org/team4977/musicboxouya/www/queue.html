@@ -4,42 +4,57 @@
 
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <title>MusicBox | Queue</title>
-  <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/foundation/4.3.2/css/normalize.min.css" />
-  <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/foundation/4.3.2/css/foundation.min.css" />
-  <link rel="stylesheet" href="http://apollo.lobos.me/MusicBoxResources/css/main.css" />
-  <link rel="stylesheet" href="http://apollo.lobos.me/MusicBoxResources/css/index.css" />
-  <script src="http://code.jquery.com/jquery-2.0.3.min.js"></script>
-  <script src="http://cdnjs.cloudflare.com/ajax/libs/foundation/4.3.2/js/foundation.min.js"></script>
-  <script src="http://apollo.lobos.me/MusicBoxResources/js/object.js" type="text/javascript" charset="utf-8"></script>
-  <script src="http://apollo.lobos.me/MusicBoxResources/js/table.js" type="text/javascript" charset="utf-8"></script>
-  <script src="http://apollo.lobos.me/MusicBoxResources/js/bridge.js"></script>
-  <script src="http://apollo.lobos.me/MusicBoxResources/js/queue.js"></script>
-  <script src="http://cdnjs.cloudflare.com/ajax/libs/modernizr/2.6.2/modernizr.js"></script>
+  <link rel="stylesheet" href="resources/css/bootstrap.min.css">
+  <link rel="stylesheet" href="resources/css/bootstrap-theme.min.css">
+  <link rel="stylesheet" href="resources/css/main.css" />
+  <link rel="stylesheet" href="resources/css/index.css" />
+  <script src="resources/js/jquery-2.0.3.min.js"></script>
+  <script src="resources/js/object.js" type="text/javascript" charset="utf-8"></script>
+  <script src="resources/js/table.js" type="text/javascript" charset="utf-8"></script>
+  <script src="resources/js/bridge.js"></script>
+  <script src="resources/js/queue.js"></script>
+  <script src="resources/js/bootstrap.min.js"></script> 
 </head>
 <body>
-  <div class="sticky">
-    <nav class="top-bar">
-      <ul class="title-area">
-        <li class="name"><h1><a href="index.html">MusicBox</a></h1></li>
-      </ul>
-      <section class="top-bar-section">
-        <ul class="left">
-          <li class=""><a href="index.html">Now Playing</a></li>
-          <li class="divider"></li>
-          <li class=""><a href="library.html">Library</a></li>
-          <li class="divider"></li>
+  <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+    <div class="container">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#main-nav">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="index.html">MusicBox</a>
+      </div>
+      <div class="collapse navbar-collapse" id="main-nav">
+        <ul class="nav navbar-nav">
+          <li><a href="index.html">Now Playing</a></li>
+          <li><a href="library.html">Library</a></li>
           <li class="active"><a href="#">Queue</a></li>
         </ul>
-      </section>
-    </nav>
-  </div>
+      </div>
+    </div>
+  </nav>
   <div class="container">
-    <div class="row">
-      <div class="small-12">
-        <h1>Queue</h1>
-        <div id="queue-list">
+    <section class="queue sect">
+      <h1>Queue</h1>
+      <div id="queue-list"></div>
+    </section>
+  </div>
+  <div class="modal fade" id="connection-error-alert" tabindex="-1" role="dialog">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title" id="album-list-title">Connection Problem</h4>
+        </div>
+        <div class="modal-body">
+          <p>There was a problem with connecting to the OUYA.</p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary" data-dismiss="modal">Retry</button>
         </div>
       </div>
     </div>

@@ -1,10 +1,14 @@
-function request(url, sendData, callBack){
+function request(url, sendData, callBack, errorCallBack){
+  errorCallBack = typeof errorCallBack === "function" ? errorCallBack : function(){};
   $.ajax({
     url:url,
     type:"GET",
     data:sendData,
     success:function(result){
       callBack(result)
+    },
+    error:function(result){
+      errorCallBack(result);
     }
   })
 }
@@ -29,12 +33,20 @@ function queueSong(id){
 
 function buildAlbumArt(imgEle, res){
   var data = JSON.parse(res);
-  imgEle.attr("src", "/api/art?song="+data.song.id);
+  var source = "/api/art?song="+data.song.id;
+  var test = imgEle.data("src") == null ? source : imgEle.data("src");
+  if(source != imgEle.data("src")){
+    imgEle.data("src", source).attr("src", source).fadeOut().load(function(){
+      $(this).fadeIn();
+    });
+  }
+  
+  
 }
 
 function buildSongInfo(parentEle, res){
   var data = JSON.parse(res);
-  var name = createElement("h3", {"class":"song-title"}, data.song.title);
+  var name = createElement("h2", {"class":"song-title"}, data.song.title);
   var p = createElement("p");
   var artist = createElement("span", {"class":"song-artist"}, data.song.artist);
   var br = createElement("br");
@@ -63,7 +75,7 @@ function buildSongTime(parentEle, res){
   var currentTime = createElement("span", {"class":""}, currentMinutes + ":" + currentSeconds);
   var durationTime = createElement("span", {"class":""}, durationMinutes + ":" + durationSeconds);
   var percent = ((data.position/data.duration)*100);
-  var progressPercent = createElement("span", {"class":"meter","style":"width: " + percent + "%"});
+  var progressPercent = createElement("div", {"class":"progress-bar progress-bar-info", "role":"progressbar","style":"width: " + percent + "%"});
   parentEle.html("");
   insertElementAt(currentTime,parentEle[0]);
   insertElementAt(progressPercent,parentEle[1]);
@@ -101,7 +113,7 @@ function buildQueueTable(parentEle, res){
   table.addAdvancedColumnProcessor("order", function(data){
     return counter++;
   });
-  table.setProperties("table", {width:"100%"});
+  table.setProperties("table", {"class":"table table-condensed table-striped"});
   var html = table.buildTable(res);
   insertElementAt(html, parentEle[0]);
 }
@@ -109,9 +121,9 @@ function buildQueueTable(parentEle, res){
 function buildSongTable(parentEle, res){
   var table = new Table(["title", "album", "artist", "score", "add"], ["Song", "Album", "Artist", "+1", ""]);
   parentEle.html("");
-  table.setProperties("table", {width:"100%"});
+  table.setProperties("table", {"class":"table table-condensed table-striped"});
   table.addAdvancedColumnProcessor("add", function(data){
-    button = createElement("button", {"class":"button tiny"}, "Add To Queue");
+    button = createElement("button", {"class":"btn btn-info btn-sm"}, "Add To Queue");
     $(button).click(function(){
       $(this).attr("disabled", "disabled").delay(10000).queue(function(next){
         $(this).removeAttr("disabled");
@@ -124,6 +136,9 @@ function buildSongTable(parentEle, res){
   });
   var html = table.buildTable(res);
   insertElementAt(html, parentEle[0]);
+  parentEle.load(function(){
+    alert("loaded");
+  })
 }
 
 function buildAlbumList(parentEle, res){
@@ -131,18 +146,28 @@ function buildAlbumList(parentEle, res){
   var data = JSON.parse(res);
   parentEle.html("");
   for(album in data){
-    var li = createElement("li");
-    var a = createElement("a", {"href":"#", "data-reveal-id":"album-song-list", "data-album-id":album})
-    var img = createElement("img", {"src":"/api/art?song="+data[album].songs[0].id, "width":"250", "height":"250"});
-    var info = createElement("ul", {"class":"no-bullet ul-margin-bottom"});
-    var title = createElement("li", {"class":"album-artist"}, data[album].title);
-    var artist = createElement("li", {"class":"album-artist"}, data[album].artist);
+    var div = createElement("div", {"class":"col-sm-3"});
+    var holder = createElement("div", {"class":"album-holder"});
+    var holderInner = createElement("div", {"class":"place-holder album-holder-inner"})
+    var a = createElement("a", {"href":"#", "data-toggle":"modal", "data-target":"#album-song-list", "data-album-id":album})
+    var img = createElement("img", {"src":"resources/loading.gif", "class":"img-responsive album-art loading"});
+    var info = createElement("div", {"class":"text-center"});
+    var title = createElement("p", {"class":"album-artist"}, data[album].title);
+    var artist = createElement("p", {"class":"album-artist lead small"}, data[album].artist);
+    
+    var source = "/api/art?song="+data[album].songs[0].id;
+    $(img).attr("src", source).load(function(){
+      $(this).hide().removeClass("loading").fadeIn();
+    });
+    
     insertElementAt(img, a);
-    insertElementAt(a, li);
-    insertElementAt(info, li);
+    insertElementAt(a, holderInner);
+    insertElementAt(holderInner, holder);
     insertElementAt(title, info);
     insertElementAt(artist, info);
-    insertElementAt(li, parentEle[0]);
+    insertElementAt(holder, div);
+    insertElementAt(info, div);
+    insertElementAt(div, parentEle[0]);
     albumSongs.push(data[album].songs);
     $(a).data("songs", data[album].songs);
     $(a).data("title", data[album].title);
