@@ -26,8 +26,12 @@ public class RandomMusicPool {
 	
 	public Song pick()
 	{
-		int index = (int) Math.floor(Math.random()*pool.size());
-		return pool.get(index);
+		if (pool.size() != 0 )
+		{
+			int index = (int) Math.floor(Math.random()*pool.size());
+			return pool.get(index);
+		}
+		return null;
 	}
 	
 }
