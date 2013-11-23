@@ -14,7 +14,7 @@ import org.json.JSONObject;
 
 public class ArtworkGetter {
 	private static final String API_KEY = "0c8d0b702a23553883685199703abe8c";
-	private static final String DEFAULT_ART = "http://www.google.com/";
+	private static final String DEFAULT_ART = "";
 	public static String getArtwork(String artist, String album)
 	{
 		try
