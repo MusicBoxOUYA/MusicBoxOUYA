@@ -170,9 +170,9 @@ function buildAlbumList(parentEle, res){
       $(this).hide().removeClass("loading").fadeIn();
     });
     
-    insertElementAt(img, a);
-    insertElementAt(a, holderInner);
-    insertElementAt(holderInner, holder);
+    insertElementAt(img, holderInner);
+    insertElementAt(holderInner, a);
+    insertElementAt(a, holder);
     insertElementAt(title, info);
     insertElementAt(artist, info);
     insertElementAt(holder, div);
