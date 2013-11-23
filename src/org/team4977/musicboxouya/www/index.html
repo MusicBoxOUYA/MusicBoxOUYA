@@ -43,7 +43,7 @@
       <div class="playing-inner">
         <h1>Now Playing</h1>
         <div class="row">
-          <div class="col-sm-offset-1 col-sm-3">
+          <div class="col-sm-4">
             <div class="album-holder">
               <div class="album-holder-inner place-holder">
                 <img src="http://placehold.it/250x250" class="album-art center-block img-responsive loading" alt="Cover Art" id="album-art">
@@ -52,18 +52,22 @@
           </div>
           <div class="col-sm-8">
             <div class="row">
-              <div class="col-sm-offset-1 col-sm-10">
+              <div class="col-sm-12">
                 <div id="song-info" class="jumbotron">
                   <h2 class="song-title">Song Name</h2>
-                  <p>
+                  <div class="row">
+                  <p class="col-xs-10">
                     <span class="song-artist">Song Artist</span><br>
                     <span class="song-album">Song Album</span>
                   </p>
+                  <div class="col-xs-2">
+                    <span>40</span> <span class="glyphicon glyphicon-thumbs-up"></span>
+                  </div>
                 </div>
               </div>
             </div>
             <div class="row">
-              <div class="col-xs-2 song-progress">-:--</div>
+              <div class="col-xs-2 song-progress text-right">-:--</div>
               <div class="col-xs-8">
                 <div class="progress song-progress">
                   <div class="progress-bar progress-bar-info" role="progressbar" style="width: 0%"></div>

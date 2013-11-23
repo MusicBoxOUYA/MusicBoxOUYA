@@ -6,7 +6,10 @@
   
 }
 
-.loading{
+.loading {
   visibility:hidden;
 }
 
+.album-holder {
+  margin-bottom:10px;
+}

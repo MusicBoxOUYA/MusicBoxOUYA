@@ -47,13 +47,23 @@ function buildAlbumArt(imgEle, res){
 function buildSongInfo(parentEle, res){
   var data = JSON.parse(res);
   var name = createElement("h2", {"class":"song-title"}, data.song.title);
-  var p = createElement("p");
+  var div = createElement("div", {"class":"row"});
+  var p = createElement("p", {"class":"col-xs-10"});
   var artist = createElement("span", {"class":"song-artist"}, data.song.artist);
   var br = createElement("br");
   var album = createElement("span", {"class":"song-album"}, data.song.album);
+  var likeHolder = createElement("div", {"class":"col-xs-2"});
+  var likes = createElement("span", null, Math.abs(data.song.score));
+  var space = createText(" ");
+  var icon = createElement("span", {"class":"glyphicon glyphicon-thumbs-" + data.song.score >= 0 ? "up":"down" });
   parentEle.html("");
   insertElementAt(name, parentEle[0]);
-  insertElementAt(p, parentEle[0]);
+  insertElementAt(p, div);
+  insertElementAt(likeHolder, div);
+  insertElementAt(likes, likeHolder);
+  insertElementAt(spance, likeHolder);
+  insertElementAt(icon, likeHolder);
+  insertElementAt(div, parentEle[0]);
   insertElementAt(album, p);
   insertElementAt(br, p);
   insertElementAt(artist, p);
