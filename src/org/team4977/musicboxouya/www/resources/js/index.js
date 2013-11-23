@@ -2,7 +2,6 @@ var callID;
 
 function call(){
   request("api/nowplaying", "", function(result){
-    $("#album-art").removeClass("loading");
     buildAlbumArt($("#album-art"), result);
     buildSongInfo($("#song-info"), result);
     buildSongTime($(".song-progress"), result);
@@ -28,6 +27,9 @@ function call(){
 
 function startCall(){
   window.console&&console.log("Starting Call");
+  setTimeout(function(){
+    $("#album-art").removeClass("loading");
+  },1000);
   callID = setInterval(call, 1000);
   
 }

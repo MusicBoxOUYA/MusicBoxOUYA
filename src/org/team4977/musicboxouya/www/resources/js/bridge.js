@@ -61,7 +61,7 @@ function buildSongInfo(parentEle, res){
   insertElementAt(p, div);
   insertElementAt(likeHolder, div);
   insertElementAt(likes, likeHolder);
-  insertElementAt(spance, likeHolder);
+  insertElementAt(space, likeHolder);
   insertElementAt(icon, likeHolder);
   insertElementAt(div, parentEle[0]);
   insertElementAt(album, p);
@@ -165,7 +165,7 @@ function buildAlbumList(parentEle, res){
     var title = createElement("p", {"class":"album-artist"}, data[album].title);
     var artist = createElement("p", {"class":"album-artist lead small"}, data[album].artist);
     
-    var source = "/api/art?song="+data[album].songs[0].id;
+    var source = data[album].songs[0].art;
     $(img).attr("src", source).load(function(){
       $(this).hide().removeClass("loading").fadeIn();
     });
