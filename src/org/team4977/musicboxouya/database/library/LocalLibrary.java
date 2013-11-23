@@ -71,8 +71,7 @@ public class LocalLibrary extends LibraryProvider {
 					
 					String title = metadata.extractMetadata(MediaMetadataRetriever.METADATA_KEY_TITLE);
 					int songID = Song.getNextID();
-					
-					Song s = new Song(songID, title, album, artist, fileList[i].getAbsolutePath());
+					Song s = new Song(songID, title, album, artist, fileList[i].getAbsolutePath(), album.getArtworkURL());
 					album.addSong(s);
 					addSong(s);
 					

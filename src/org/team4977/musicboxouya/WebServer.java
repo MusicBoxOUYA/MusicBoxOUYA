@@ -154,29 +154,6 @@ public class WebServer extends NanoHTTPD {
 				return new Response("{\"success\": true, \"paused\": "+(player.isPaused()?"true":"false")+"}");
 			}
     	}
-    	else if ( uri.equals("/api/art") )
-    	{
-    		if ( player == null )
-				return new Response("Waiting for library refresh...");
-			else
-			{
-				Song song = library.getSong(Integer.parseInt(parms.get("song")));
-				if ( song != null )
-				{
-					byte[] art = song.getRawArt();
-					if ( art != null )
-					{
-						return new Response(Response.Status.OK, "image/bmp", new ByteArrayInputStream(art));
-					}
-					else
-					{
-						return new Response(Response.Status.OK, "image/png", WebServer.class.getResourceAsStream("/org/team4977/musicboxouya/GenericMissing.png"));
-					}
-						
-				}
-				return new Response("Error");
-			}
-    	}
     	else if ( uri.equals("/api/getIP") )
     	{
     		return new Response(ipAddress);

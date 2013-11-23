@@ -19,15 +19,17 @@ public class Song {
 	Artist artist;
 	Album album;
 	String path;
+	String artURL;
 	int likes;
 	
-	public Song(int id, String title, Album album, Artist artist, String path)
+	public Song(int id, String title, Album album, Artist artist, String path, String artURL)
 	{
 		this.id = id;
 		this.title = title;
 		this.artist = artist;
 		this.album = album;
 		this.path = path;
+		this.artURL = artURL;
 		this.likes = 0;
 	}
 	
@@ -71,20 +73,16 @@ public class Song {
 		return likes;
 	}
 	
+	public String getArtworkURL()
+	{
+		return artURL;
+	}
+	
 	public String toJSON()
 	{
 		return toJSON(false);
 	}
 	
-	public Bitmap getArt()
-	{
-		return LibraryProvider.getInitalizedProvider().getArtForSong(this);
-	}
-	
-	public byte[] getRawArt()
-	{
-		return LibraryProvider.getInitalizedProvider().getRawArtForSong(this);
-	}
 	
 	public String toJSON(boolean fullData)
 	{
@@ -96,7 +94,8 @@ public class Song {
 			output += "\"album\": \""+getAlbum().getName()+"\",";
 			output += "\"artist\": \""+getArtist().getName()+"\",";
 		}
-		output += "\"score\": "+getLikes();
+		output += "\"score\": "+getLikes()+",";
+		output += "\"art\": \""+getArtworkURL()+"\"";
 		output += "}";
 		return output;
 	}
