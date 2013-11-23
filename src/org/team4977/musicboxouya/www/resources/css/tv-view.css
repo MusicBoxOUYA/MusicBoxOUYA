@@ -1,8 +1,15 @@
-.container {
-  width:95%;
-  margin:auto;
+.playing {
+  margin-bottom:50px;
 }
 
-.playing-inner {
-  margin-bottom:30px;
+.queue {
+  
+}
+
+.loading {
+  visibility:hidden;
+}
+
+.album-holder {
+  margin-bottom:10px;
 }
