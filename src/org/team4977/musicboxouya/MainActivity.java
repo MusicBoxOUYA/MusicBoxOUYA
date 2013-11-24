@@ -38,8 +38,7 @@ public class MainActivity extends Activity implements LibraryRefreshFinishedList
 		
 		webView = new WebView(this)
 		{
-			public boolean onKeyDown(final int keyCode, KeyEvent event){
-			    //Get the player #     
+			public boolean onKeyDown(final int keyCode, KeyEvent event){ 
 			    boolean handled = false;
 
 			    //Handle the input
@@ -54,6 +53,11 @@ public class MainActivity extends Activity implements LibraryRefreshFinishedList
 			            	player.next();
 			            handled = true;
 			            break;
+			        case OuyaController.BUTTON_Y:
+			        	library.resetCache();
+			        	library.refresh();
+			        	handled = true;
+			        	break;
 			    }
 			    return handled || super.onKeyDown(keyCode, event);
 			}

@@ -95,6 +95,7 @@ public class Song {
 			output += "\"artist\": \""+getArtist().getName()+"\",";
 		}
 		output += "\"score\": "+getLikes()+",";
+		output += "\"path\": "+getPath()+",";
 		output += "\"art\": \""+getArtworkURL()+"\"";
 		output += "}";
 		return output;

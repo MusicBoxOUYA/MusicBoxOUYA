@@ -2,7 +2,17 @@ package org.team4977.musicboxouya.database.library;
 
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.util.Collection;
+import java.util.Iterator;
 
+import org.apache.commons.io.IOUtils;
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 import org.team4977.musicboxouya.MainActivity;
 import org.team4977.musicboxouya.media.Album;
 import org.team4977.musicboxouya.media.Artist;
@@ -14,14 +24,14 @@ import android.content.DialogInterface;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.media.MediaMetadataRetriever;
+import android.os.AsyncTask;
 
 public class LocalLibrary extends LibraryProvider {
 	
 	String path;
-	Context context;
 	public LocalLibrary(Context context, String path)
 	{
-		this.context = context;
+		super(context);
 		this.path = path;
 	}
 	
@@ -83,25 +93,68 @@ public class LocalLibrary extends LibraryProvider {
 		}
 	}
 	
+	public void generateCache()
+	{
+		Iterator<Song> it = songs.values().iterator();
+		JSONArray output = new JSONArray();
+		while (it.hasNext())
+		{
+			try {
+				JSONObject thisSong = new JSONObject(it.next().toJSON());
+				output.put(thisSong);
+			} catch (JSONException e) {
+				e.printStackTrace();
+			}
+		}
+		
+		try {
+			FileWriter cacheWriter = new FileWriter(path+"/MusicBoxLibrary.json");
+			cacheWriter.write(output.toString());
+			cacheWriter.flush();
+			cacheWriter.close();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+	
 	protected void doLibraryPopulate()
 	{
-		processDirectory(path);
+		File f = new File(path+"/MusicBoxLibrary.json");
+		if ( f.exists() )
+		{
+			try {
+				FileReader reader = new FileReader(f);
+				String jsonData = IOUtils.toString(reader);
+				
+				JSONArray json = new JSONArray(jsonData);
+				for ( int i = 0; i < json.length(); i++ )
+				{
+					JSONObject song = json.getJSONObject(i);
+					Artist artist = addArtist(song.getString("artist"));
+					Album album = artist.addAlbum(song.getString("album"));
+					int songID = Song.getNextID();
+					Song s = new Song(songID, song.getString("title"), album, artist, song.getString("path"), album.getArtworkURL());
+					album.addSong(s);
+					addSong(s);
+				}
+				reader.close();
+			} catch (Exception e) {
+				processDirectory(path);
+			}
+			
+		}
+		else
+		{
+			processDirectory(path);
+			generateCache();
+		}
 	}
 
 	@Override
-	public Bitmap getArtForSong(Song s) {
-		byte[] picture = getRawArtForSong(s);
-		Bitmap bitmap = BitmapFactory.decodeByteArray(picture, 0, picture.length);
-		return bitmap;
-	}
-
-	@Override
-	public byte[] getRawArtForSong(Song s) {
-		MediaMetadataRetriever metadata = new MediaMetadataRetriever();
-		metadata.setDataSource(s.getPath());
-		byte[] picture = metadata.getEmbeddedPicture();
-		metadata.release();
-		return picture;
+	public void resetCache() {
+		File f = new File(path+"/MusicBoxLibrary.json");
+		if ( f.exists() )
+			f.delete();
 	}
 
 }

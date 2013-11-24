@@ -45,7 +45,6 @@ public class ArtworkGetter {
 		    } 
 		    else
 		    {
-		        //Closes the connection.
 		        response.getEntity().getContent().close();
 		        return DEFAULT_ART;
 		    }

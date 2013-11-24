@@ -6,6 +6,8 @@ import org.team4977.musicboxouya.media.Album;
 import org.team4977.musicboxouya.media.Artist;
 import org.team4977.musicboxouya.media.Song;
 
+import android.app.AlertDialog;
+import android.content.Context;
 import android.graphics.Bitmap;
 import android.os.AsyncTask;
 
@@ -23,8 +25,11 @@ public abstract class LibraryProvider {
 	HashMap<Integer, Song> songs = new HashMap<Integer, Song>();
 	LibraryRefreshFinishedListener refreshDoneListner = null;
 	
-	public LibraryProvider()
+	Context context = null;
+	
+	public LibraryProvider(Context context)
 	{
+		this.context = context;
 		initalizedProvider = this;
 	}
 	
@@ -38,24 +43,31 @@ public abstract class LibraryProvider {
 	
 	protected abstract void doLibraryPopulate();
 	
+	
 	public void refresh()
 	{
 		if ( canRead() )
 		{
-			new AsyncTask<Void, Void, Boolean>()
-			{
-	
+			new AsyncTask<Void, String, Boolean>()
+			{ 
+				AlertDialog progressDialog = null;
+				
+				protected void onPreExecute()
+				{
+					progressDialog = new AlertDialog.Builder(context).setTitle("Indexing library...").setMessage("Album data is being loaded.\n\n This may take some time depending on the size of your library").show();
+					progressDialog.setCancelable(false);
+				}
+				
 				@Override
 				protected Boolean doInBackground(Void... params) {
 					doLibraryPopulate();
-					
 					return true;
 				}
 				
 				protected void onPostExecute(Boolean result)
 				{
-					System.out.println("really done");
 					refreshDoneListner.libraryRefreshFinished(LibraryProvider.this);
+					progressDialog.dismiss();
 				}
 	
 			}.execute();
@@ -117,9 +129,6 @@ public abstract class LibraryProvider {
 		return artists.values().toArray(new Artist[artists.size()]);
 	}
 	
-	public abstract Bitmap getArtForSong(Song s);
-	public abstract byte[] getRawArtForSong(Song s);
-	
 	public String toJSON()
 	{
 		String output = "[";
@@ -139,6 +148,7 @@ public abstract class LibraryProvider {
 		return output;
 	}
 
-	
+	public abstract void resetCache();
+	public abstract void generateCache();
 	
 }
