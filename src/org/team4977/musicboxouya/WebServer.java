@@ -27,19 +27,27 @@ public class WebServer extends NanoHTTPD {
     	// Static content
     	if ( uri.equals("/") || uri.equals("/index.html") )
     	{
-    		return new Response(Response.Status.OK, "text/html", WebServer.class.getResourceAsStream("/org/team4977/musicboxouya/www/index.html"));
+    		Response response = new Response(Response.Status.OK, "text/html", WebServer.class.getResourceAsStream("/org/team4977/musicboxouya/www/index.html"));
+    		response.addHeader("Access-Control-Allow-Origin", "*");
+    		return response;
     	}
     	else if ( uri.equals("/library.html") )
     	{
-    		return new Response(Response.Status.OK, "text/html", WebServer.class.getResourceAsStream("/org/team4977/musicboxouya/www/library.html"));
+    		Response response =  new Response(Response.Status.OK, "text/html", WebServer.class.getResourceAsStream("/org/team4977/musicboxouya/www/library.html"));
+    		response.addHeader("Access-Control-Allow-Origin", "*");
+    		return response;
     	}
     	else if ( uri.equals("/queue.html") )
     	{
-    		return new Response(Response.Status.OK, "text/html", WebServer.class.getResourceAsStream("/org/team4977/musicboxouya/www/queue.html"));
+    		Response response =  new Response(Response.Status.OK, "text/html", WebServer.class.getResourceAsStream("/org/team4977/musicboxouya/www/queue.html"));
+    		response.addHeader("Access-Control-Allow-Origin", "*");
+    		return response;
     	}
     	else if ( uri.equals("/tvView.html") )
     	{
-    		return new Response(Response.Status.OK, "text/html", WebServer.class.getResourceAsStream("/org/team4977/musicboxouya/www/tvView.html"));
+    		Response response =  new Response(Response.Status.OK, "text/html", WebServer.class.getResourceAsStream("/org/team4977/musicboxouya/www/tvView.html"));
+    		response.addHeader("Access-Control-Allow-Origin", "*");
+    		return response;
     	}
     	
     	
