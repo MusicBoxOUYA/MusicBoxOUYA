@@ -52,14 +52,15 @@ public class MusicPlayer implements OnCompletionListener {
 		return queue;
 	}
 	
-	public void playSong(Song song)
+	public synchronized void playSong(Song song)
 	{
 		if ( nowPlaying != null )
 		{
-			player.stop();
+			if ( player.isLooping() )
+				player.stop();
 			player.release();
-			player = new MediaPlayer();
 		}
+		player = new MediaPlayer();
 		nowPlaying = song;
 		player.setOnCompletionListener(this);
 		
@@ -70,7 +71,15 @@ public class MusicPlayer implements OnCompletionListener {
 			paused = false;
 		} catch (Exception e) {
 			nowPlaying = null;
-			onCompletion(player);
+			e.printStackTrace();
+			new Thread()
+			{
+				public void run()
+				{
+					onCompletion(player);
+				}
+			}.start();
+			
 			System.out.println("DataSource set failed");
 		}
 	}
@@ -79,7 +88,13 @@ public class MusicPlayer implements OnCompletionListener {
 	{
 		if ( nowPlaying != null )
 		{
-			onCompletion(player);
+			new Thread()
+			{
+				public void run()
+				{
+					onCompletion(player);
+				}
+			}.start();
 		}
 	}
 	
@@ -108,7 +123,7 @@ public class MusicPlayer implements OnCompletionListener {
 	public String nowPlayingJSON()
 	{
 		String output = "{";
-		if ( nowPlaying != null )
+		if ( nowPlaying != null && player.isPlaying() )
 		{
 			output += "\"paused\": "+(paused?"true":"false")+",";
 			output += "\"duration\": "+player.getDuration()+",";
