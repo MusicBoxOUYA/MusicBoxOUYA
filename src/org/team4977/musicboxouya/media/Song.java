@@ -80,7 +80,7 @@ public class Song {
 	
 	public String toJSON()
 	{
-		return toJSON(false);
+		return toJSON(true);
 	}
 	
 	
@@ -95,7 +95,7 @@ public class Song {
 			output += "\"artist\": \""+getArtist().getName()+"\",";
 		}
 		output += "\"score\": "+getLikes()+",";
-		output += "\"path\": "+getPath()+",";
+		output += "\"path\": \""+getPath()+"\",";
 		output += "\"art\": \""+getArtworkURL()+"\"";
 		output += "}";
 		return output;

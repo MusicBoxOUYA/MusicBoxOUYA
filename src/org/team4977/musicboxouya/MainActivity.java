@@ -1,16 +1,9 @@
 package org.team4977.musicboxouya;
 
 import java.io.IOException;
-import java.net.NetworkInterface;
-import java.net.SocketException;
-import java.util.Enumeration;
-import java.util.Iterator;
-
-
 import org.team4977.musicboxouya.database.library.LibraryProvider;
 import org.team4977.musicboxouya.database.library.LibraryRefreshFinishedListener;
 import org.team4977.musicboxouya.database.library.LocalLibrary;
-import org.team4977.musicboxouya.media.Song;
 import org.team4977.musicboxouya.player.MusicPlayer;
 
 import tv.ouya.console.api.OuyaController;
@@ -21,7 +14,6 @@ import android.os.Bundle;
 import android.app.Activity;
 import android.content.Context;
 import android.view.KeyEvent;
-import android.view.Menu;
 import android.webkit.WebView;
 
 public class MainActivity extends Activity implements LibraryRefreshFinishedListener {
@@ -70,7 +62,8 @@ public class MainActivity extends Activity implements LibraryRefreshFinishedList
 		setContentView(webView);
 		webView.setSelected(true);
 		
-		library = new LocalLibrary(this, "/mnt/usbdrive/Music");
+		//library = new LocalLibrary(this, "/mnt/usbdrive/Music");
+		library = new LocalLibrary(this, "/sdcard/MusicTest");
 		library.setRefreshFinishedListener(this);
 			
 		library.refresh();

@@ -69,6 +69,8 @@ public class MusicPlayer implements OnCompletionListener {
 			player.start();
 			paused = false;
 		} catch (Exception e) {
+			nowPlaying = null;
+			onCompletion(player);
 			System.out.println("DataSource set failed");
 		}
 	}

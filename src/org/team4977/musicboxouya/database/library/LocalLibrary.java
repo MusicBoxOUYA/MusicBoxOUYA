@@ -2,18 +2,15 @@ package org.team4977.musicboxouya.database.library;
 
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.util.Collection;
 import java.util.Iterator;
 
 import org.apache.commons.io.IOUtils;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-import org.team4977.musicboxouya.MainActivity;
 import org.team4977.musicboxouya.media.Album;
 import org.team4977.musicboxouya.media.Artist;
 import org.team4977.musicboxouya.media.Song;
@@ -21,10 +18,7 @@ import org.team4977.musicboxouya.media.Song;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.media.MediaMetadataRetriever;
-import android.os.AsyncTask;
 
 public class LocalLibrary extends LibraryProvider {
 	
@@ -122,6 +116,7 @@ public class LocalLibrary extends LibraryProvider {
 		File f = new File(path+"/MusicBoxLibrary.json");
 		if ( f.exists() )
 		{
+			System.out.println("Using cached library");
 			try {
 				FileReader reader = new FileReader(f);
 				String jsonData = IOUtils.toString(reader);
@@ -139,12 +134,16 @@ public class LocalLibrary extends LibraryProvider {
 				}
 				reader.close();
 			} catch (Exception e) {
+				e.printStackTrace();
+				f.delete();
+				System.out.println("Cached library read failed; Using indexer");
 				processDirectory(path);
 			}
 			
 		}
 		else
 		{
+			System.out.println("Using indexer to populate library");
 			processDirectory(path);
 			generateCache();
 		}

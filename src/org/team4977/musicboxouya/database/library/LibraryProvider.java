@@ -8,7 +8,6 @@ import org.team4977.musicboxouya.media.Song;
 
 import android.app.AlertDialog;
 import android.content.Context;
-import android.graphics.Bitmap;
 import android.os.AsyncTask;
 
 public abstract class LibraryProvider {
