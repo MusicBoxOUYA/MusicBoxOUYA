@@ -92,6 +92,13 @@ function buildSongTime(parentEle, res){
   insertElementAt(durationTime,parentEle[2]);
 }
 
+function setColor(elements, image) {
+  var thief = new ColorThief();
+  var colors = thief.getPalette(image[0], 2);
+  $("body").css("background-color", "rgb(" + colors[1][0] + "," + colors[1][1] + "," + colors[1][2] + ")");
+  elements.css("color", "rgb(" + colors[1][0] + "," + colors[1][1] + "," + colors[1][2] + ")");
+}
+
 function buildUpNext(parentEle, res){
   parentEle.html("");
   var data = JSON.parse(res);

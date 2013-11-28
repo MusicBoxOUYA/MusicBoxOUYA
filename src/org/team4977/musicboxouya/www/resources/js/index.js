@@ -5,6 +5,7 @@ function call(){
     buildAlbumArt($("#album-art"), result);
     buildSongInfo($("#song-info"), result);
     buildSongTime($(".song-progress"), result);
+    setColor($(".color-1"), $("#album-art"));
     setButtonSongId($("#like-button"), result);
     setButtonSongId($("#dislike-button"), result);
   }, function(data){
