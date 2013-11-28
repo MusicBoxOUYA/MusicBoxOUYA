@@ -95,7 +95,7 @@ function buildSongTime(parentEle, res){
 function setColor(elements, image) {
   var thief = new ColorThief();
   var colors = thief.getPalette(image[0], 2);
-  $("body").css("background-color", "rgb(" + colors[1][0] + "," + colors[1][1] + "," + colors[1][2] + ")");
+  $("body").css("background-color", "rgb(" + colors[0][0] + "," + colors[0][1] + "," + colors[0][2] + ")");
   elements.css("color", "rgb(" + colors[1][0] + "," + colors[1][1] + "," + colors[1][2] + ")");
 }
 
