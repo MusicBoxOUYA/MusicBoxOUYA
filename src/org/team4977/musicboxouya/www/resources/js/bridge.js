@@ -31,17 +31,14 @@ function queueSong(id){
   });
 }
 
-function buildAlbumArt(imgEle, res){
+function buildAlbumArt(imgEle, ccEle, res){
   var data = JSON.parse(res);
   var source = data.song.art;
-  var test = imgEle.data("src") == null ? source : imgEle.data("src");
-  if(source != imgEle.data("src")){
-    imgEle.fadeOut("slow", function() {
-      $(this).data("src", source).attr("src", source).load(function(){
-        $(this).fadeIn();
-      });
+  imgEle.fadeOut("slow", function() {
+    $(this).data("src", source).attr("src", source).load(function(){
+      setColor(this, ccEle);
+      $(this).fadeIn();
     });
-  }
 }
 
 function buildSongInfo(parentEle, res){
@@ -92,7 +89,7 @@ function buildSongTime(parentEle, res){
   insertElementAt(durationTime,parentEle[2]);
 }
 
-function setColor(elements, image) {
+function setColor(image, elements) {
   var thief = new ColorThief();
   var colors = thief.getPalette(image[0], 2);
   $("body").css("background-color", "rgb(" + colors[0][0] + "," + colors[0][1] + "," + colors[0][2] + ")");
