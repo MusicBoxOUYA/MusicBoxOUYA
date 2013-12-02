@@ -1,4 +1,4 @@
-package org.team4977.musicboxouya.media;
+	package org.team4977.musicboxouya.media;
 
 import org.team4977.musicboxouya.database.library.LibraryProvider;
 

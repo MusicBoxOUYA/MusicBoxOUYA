@@ -13,6 +13,7 @@ import android.net.wifi.WifiManager;
 import android.os.Bundle;
 import android.app.Activity;
 import android.content.Context;
+import android.view.Gravity;
 import android.view.KeyEvent;
 import android.webkit.WebView;
 
@@ -54,16 +55,18 @@ public class MainActivity extends Activity implements LibraryRefreshFinishedList
 			    return handled || super.onKeyDown(keyCode, event);
 			}
 		};
+		
 		webView.setInitialScale(1);
 		webView.getSettings().setJavaScriptEnabled(true);
 		webView.getSettings().setLoadWithOverviewMode(true);
 		webView.getSettings().setUseWideViewPort(true);
+		
+		
 		getActionBar().hide();
 		setContentView(webView);
 		webView.setSelected(true);
 		
-		//library = new LocalLibrary(this, "/mnt/usbdrive/Music");
-		library = new LocalLibrary(this, "/sdcard/MusicTest");
+		library = new LocalLibrary(this, "/mnt/usbdrive/Music");
 		library.setRefreshFinishedListener(this);
 			
 		library.refresh();
@@ -73,6 +76,8 @@ public class MainActivity extends Activity implements LibraryRefreshFinishedList
 		int ip = wifiInfo.getIpAddress();
 		ipAddress = String.format("%d.%d.%d.%d", (ip & 0xff), (ip >> 8 & 0xff), (ip >> 16 & 0xff), (ip >> 24 & 0xff));
 		
+		
+		webView.getRootView().setBackgroundColor(getResources().getColor(android.R.color.black));
 	}
 	
 	@Override
@@ -101,6 +106,8 @@ public class MainActivity extends Activity implements LibraryRefreshFinishedList
 	public void libraryRefreshFinished(LibraryProvider library) {
 		System.out.println("Library load finished!");
 		player = MusicPlayer.getMusicPlayer();
+		if ( webserver != null )
+			webserver.stop();
 		webserver = new WebServer(library, player, ipAddress);
 		try {
 			webserver.start();

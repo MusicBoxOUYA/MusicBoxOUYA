@@ -31,7 +31,6 @@ public class ArtworkGetter {
 		        out.close();
 		        String responseString = out.toString();
 		        JSONObject data = new JSONObject(responseString);
-		        System.out.println(responseString);
 		        JSONObject albumInfo = data.getJSONObject("album");
 		        if ( albumInfo != null )
 		        {

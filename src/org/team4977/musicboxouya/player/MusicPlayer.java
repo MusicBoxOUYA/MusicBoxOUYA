@@ -123,7 +123,7 @@ public class MusicPlayer implements OnCompletionListener {
 	public String nowPlayingJSON()
 	{
 		String output = "{";
-		if ( nowPlaying != null && player.isPlaying() )
+		if ( nowPlaying != null )
 		{
 			output += "\"paused\": "+(paused?"true":"false")+",";
 			output += "\"duration\": "+player.getDuration()+",";

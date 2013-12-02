@@ -17,6 +17,13 @@ public class Album {
 		this.artwork = ArtworkGetter.getArtwork(artist.getName(), name);
 	}
 	
+	public Album(String name, String artwork, Artist artist)
+	{
+		this.name = name; 
+		this.artwork = artwork;
+		this.artist = artist;
+	}
+	
 	public String getName()
 	{
 		return name;

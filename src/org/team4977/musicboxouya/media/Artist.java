@@ -22,6 +22,16 @@ public class Artist {
 		return a;
 	}
 	
+	public Album addAlbum(String title, String art)
+	{
+		Album a = albums.get(title);
+		if ( a != null )
+			return a;
+		a = new Album(title, art, this);
+		albums.put(title, a);
+		return a;
+	}
+	
 	public String getName()
 	{
 		return name;

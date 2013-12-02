@@ -46,6 +46,12 @@ public class LocalLibrary extends LibraryProvider {
 		alert.show();
 	}
 	
+	protected boolean isSupportedFile(File f)
+	{
+		String filename = f.getName();
+		return filename.endsWith(".mp3") || filename.endsWith(".m4a") || filename.endsWith(".3gp") || filename.endsWith(".aac") || filename.endsWith(".flac") || filename.endsWith(".ogg") || filename.endsWith(".wav");
+	}
+	
 	protected void processDirectory(String dir)
 	{
 		System.out.println("Processing "+dir);
@@ -55,7 +61,7 @@ public class LocalLibrary extends LibraryProvider {
 		{
 			if ( fileList[i].isDirectory() )
 				processDirectory(fileList[i].getAbsolutePath());
-			else if ( fileList[i].isFile() && fileList[i].canRead() && fileList[i].getName().endsWith(".mp3") )
+			else if ( fileList[i].isFile() && fileList[i].canRead() && isSupportedFile(fileList[i]) )
 			{
 				MediaMetadataRetriever metadata = new MediaMetadataRetriever();
 				System.out.println("Reading "+fileList[i].getAbsolutePath());
@@ -74,6 +80,9 @@ public class LocalLibrary extends LibraryProvider {
 					Album album = artist.addAlbum(albumName);
 					
 					String title = metadata.extractMetadata(MediaMetadataRetriever.METADATA_KEY_TITLE);
+					if ( title == null || title == "null" )
+						title = fileList[i].getName();
+					
 					int songID = Song.getNextID();
 					Song s = new Song(songID, title, album, artist, fileList[i].getAbsolutePath(), album.getArtworkURL());
 					album.addSong(s);
@@ -126,7 +135,7 @@ public class LocalLibrary extends LibraryProvider {
 				{
 					JSONObject song = json.getJSONObject(i);
 					Artist artist = addArtist(song.getString("artist"));
-					Album album = artist.addAlbum(song.getString("album"));
+					Album album = artist.addAlbum(song.getString("album"), song.getString("art"));
 					int songID = Song.getNextID();
 					Song s = new Song(songID, song.getString("title"), album, artist, song.getString("path"), album.getArtworkURL());
 					album.addSong(s);
